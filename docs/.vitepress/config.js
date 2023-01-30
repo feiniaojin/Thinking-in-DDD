@@ -13,7 +13,7 @@ export default {
             link: "/0/0.1",
           },
           {
-            text: "作者介绍",
+            text: "作者简介",
             link: "/0/0.2",
           },
           {
