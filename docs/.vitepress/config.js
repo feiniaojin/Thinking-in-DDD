@@ -1,7 +1,6 @@
 export default {
   title: "Thinking in DDD",
   description: "领域驱动设计（DDD：Domain Driven Design）落地实战",
-  "base":"/ddd/",
   themeConfig: {
     sidebar: [
       {
