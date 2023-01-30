@@ -6,10 +6,7 @@ hero:
   actions:
     - theme: brand
       text: 开始学习 →
-      link: /0/index
-    - theme: alt
-      text: 获取项目
-      link: /intent/index
+      link: /0/0.1
 
 features:
   - title: 第一部分 领域驱动基础
