@@ -3,10 +3,15 @@ title: Thinking in DDD
 layout: home
 hero:
   name: Thinking in DDD
+  text: 领域驱动设计编程思想
+  tagline: 代码尽头谁为峰，一见领域道成空
   actions:
     - theme: brand
       text: 开始学习 →
       link: /0/0.1
+    - theme: alt
+      text: View on GitHub
+      link: https://github.com/vuejs/vitepress
 
 features:
   - title: 准确理解领域驱动设计概念
