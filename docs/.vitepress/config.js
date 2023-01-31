@@ -80,7 +80,7 @@ export default {
         collapsible: true,
         items: [
           { text: "5.1 GoF设计模式", link: "/5/5.1" },
-          { text: "5.2 规约模式", link: "/5/5.2" }
+          { text: "5.2 规约模式", link: "/5/5.2" },
           { text: "5.3 防腐层", link: "/5/5.3" },
         ],
       },
