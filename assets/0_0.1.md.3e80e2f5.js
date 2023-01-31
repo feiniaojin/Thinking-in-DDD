@@ -1,4 +1,4 @@
-import{_ as n,c as e,o as r,a as o}from"./app.8c370cb7.js";const f=JSON.parse('{"title":"目录","description":"","frontmatter":{},"headers":[],"relativePath":"0/0.1.md"}'),p={name:"0/0.1.md"},t=o(`<h1 id="目录" tabindex="-1">目录 <a class="header-anchor" href="#目录" aria-hidden="true">#</a></h1><p><strong>0. 前言</strong></p><p><a href="./0.1.html" title="作者简介">作者简介</a></p><p><a href="./0.3.html">全书导读</a></p><p><strong>1. 领域驱动设计初步认识</strong></p><p><a href="./../1/1.1.html">1.1 领域驱动设计介绍</a></p><pre><code>1.2 常见落地误区
+import{_ as n,c as e,o as r,a as o}from"./app.8c370cb7.js";const f=JSON.parse('{"title":"目录","description":"","frontmatter":{},"headers":[],"relativePath":"0/0.1.md"}'),p={name:"0/0.1.md"},t=o(`<h1 id="目录" tabindex="-1">目录 <a class="header-anchor" href="#目录" aria-hidden="true">#</a></h1><p><strong>0. 前言</strong></p><p><a href="./0.2.html" title="作者简介">作者简介</a></p><p><a href="./0.3.html">全书导读</a></p><p><strong>1. 领域驱动设计初步认识</strong></p><p><a href="./../1/1.1.html">1.1 领域驱动设计介绍</a></p><pre><code>1.2 常见落地误区
 
 1.3 如何学习领域驱动设计
 </code></pre><p><strong>2. 应用架构</strong></p><pre><code>2.1 现有应用架构存在的问题
