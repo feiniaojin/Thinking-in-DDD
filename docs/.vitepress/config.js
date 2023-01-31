@@ -73,7 +73,6 @@ export default {
         items: [
           { text: "4.1 Repository", link: "/4/4.1" },
           { text: "4.2 Factory", link: "/4/4.2" },
-          { text: "4.3 Gateway", link: "/4/4.3" },
         ],
       },
       {
@@ -81,7 +80,8 @@ export default {
         collapsible: true,
         items: [
           { text: "5.1 GoF设计模式", link: "/5/5.1" },
-          { text: "5.2 规约模式", link: "/5/5.2" },
+          { text: "5.2 规约模式", link: "/5/5.2" }
+          { text: "5.3 防腐层", link: "/5/5.3" },
         ],
       },
       {
