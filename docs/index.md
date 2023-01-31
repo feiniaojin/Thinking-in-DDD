@@ -11,7 +11,7 @@ hero:
       link: /0/0.1
     - theme: alt
       text: View on GitHub
-      link: https://github.com/vuejs/vitepress
+      link: https://github.com/feiniaojin/Thinking-in-DDD
 
 features:
   - title: 准确理解领域驱动设计概念
