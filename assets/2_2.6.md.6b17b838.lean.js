@@ -1,0 +1,1 @@
+import{_ as a,c as n,o as s,a as e}from"./app.a40d8636.js";const _=JSON.parse('{"title":"2.6 应用架构各层间数据流转","description":"","frontmatter":{},"headers":[],"relativePath":"2/2.6.md"}'),t={name:"2/2.6.md"},p=e("",24),l=[p];function i(c,r,o,A,d,C){return s(),n("div",null,l)}const u=a(t,[["render",i]]);export{_ as __pageData,u as default};
