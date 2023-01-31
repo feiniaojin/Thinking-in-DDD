@@ -3,6 +3,12 @@ export default {
   description: "领域驱动设计（DDD：Domain Driven Design）落地实战",
   base: "/Thinking-in-DDD/",
   themeConfig: {
+    socialLinks: [
+      { icon: "github", link: "https://github.com/feiniaojin/Thinking-in-DDD" },
+    ],
+    footer: {
+      copyright: 'Copyright © 2020-present Qin Yujie'
+    },
     sidebar: [
       {
         text: "0. 前言",
