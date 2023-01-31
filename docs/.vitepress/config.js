@@ -104,8 +104,8 @@ export default {
         text: "8. 一致性",
         collapsible: true,
         items: [
-          { text: "8.1 分布式事务", link: "/8/8.1" },
-          { text: "8.2 领域驱动设计事务实现", link: "/8/8.2" },
+          { text: "8.1 聚合内事务实现", link: "/8/8.1" },
+          { text: "8.2 跨聚合事务处理", link: "/8/8.2" },
         ],
       },
       {
