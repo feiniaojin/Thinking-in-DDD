@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as n,a as p}from"./app.f0191df1.js";const d=JSON.parse('{"title":"3.1 实体和值对象","description":"","frontmatter":{},"headers":[],"relativePath":"3/3.1.md"}'),l={name:"3/3.1.md"},e=p("",83),o=[e];function t(c,i,r,C,A,u){return n(),a("div",null,o)}const D=s(l,[["render",t]]);export{d as __pageData,D as default};

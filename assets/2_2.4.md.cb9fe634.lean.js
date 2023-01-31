@@ -1,1 +1,0 @@
-import{_ as s,c as n,o as a,a as p}from"./app.a40d8636.js";const d=JSON.parse('{"title":"2.4 应用架构各层实现细节","description":"","frontmatter":{},"headers":[],"relativePath":"2/2.4.md"}'),l={name:"2/2.4.md"},e=p("",91),t=[e];function o(c,i,r,C,A,y){return a(),n("div",null,t)}const u=s(l,[["render",o]]);export{d as __pageData,u as default};
