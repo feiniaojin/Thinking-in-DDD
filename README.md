@@ -2,7 +2,7 @@
 
 ## 项目介绍
 
-本项目是笔者领域驱动设计实践的总结。
+本文档是笔者领域驱动设计实践的总结。
 
 ## 阅读方法
 
@@ -28,7 +28,8 @@ $ yarn add all
 # 启动工程
 $ yarn docs:dev
 ```
-工程启动后，访问链接为：<a href="http://localhost:5173/Thinking-in-DDD/" target="_blank" rel="noreferrer">http://localhost:5173/Thinking-in-DDD/</a>
+工程启动后，访问链接为:
+<a href="http://localhost:5173/Thinking-in-DDD/" target="_blank" rel="noreferrer">http://localhost:5173/Thinking-in-DDD/</a>
 
 ## 版权声明
 
