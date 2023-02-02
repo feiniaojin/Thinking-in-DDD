@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as n,a as l}from"./app.8de1dd30.js";const C=JSON.parse('{"title":"8.1 聚合内事务实现","description":"","frontmatter":{},"headers":[],"relativePath":"8/8.1.md"}'),p={name:"8/8.1.md"},o=l("",28),t=[o];function e(c,r,i,y,A,D){return n(),a("div",null,t)}const d=s(p,[["render",e]]);export{C as __pageData,d as default};

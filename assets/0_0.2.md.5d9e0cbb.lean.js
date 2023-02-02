@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a,a as r}from"./app.8de1dd30.js";const o="/Thinking-in-DDD/images/0/0.jpeg",g=JSON.parse('{"title":"作者介绍","description":"","frontmatter":{},"headers":[],"relativePath":"0/0.2.md"}'),n={name:"0/0.2.md"},_=r("",9),i=[_];function p(s,c,h,d,m,l){return a(),t("div",null,i)}const u=e(n,[["render",p]]);export{g as __pageData,u as default};

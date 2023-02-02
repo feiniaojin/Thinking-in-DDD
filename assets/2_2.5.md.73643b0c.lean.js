@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as n,a as p}from"./app.8de1dd30.js";const _=JSON.parse('{"title":"2.5 领域对象的生命周期","description":"","frontmatter":{},"headers":[],"relativePath":"2/2.5.md"}'),e={name:"2/2.5.md"},l=p("",12),t=[l];function c(o,i,r,A,C,d){return n(),a("div",null,t)}const m=s(e,[["render",c]]);export{_ as __pageData,m as default};
