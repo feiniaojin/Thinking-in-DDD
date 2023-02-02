@@ -28,7 +28,7 @@ $ yarn add all
 # 启动工程
 $ yarn docs:dev
 ```
-工程启动后，访问链接为：http://localhost:5173/Thinking-in-DDD/
+工程启动后，访问链接为：<a href="http://localhost:5173/Thinking-in-DDD/" target="_blank" rel="noreferrer">http://localhost:5173/Thinking-in-DDD/</a>
 
 ## 版权声明
 
