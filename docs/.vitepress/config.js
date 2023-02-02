@@ -7,9 +7,17 @@ export default {
       { icon: "github", link: "https://github.com/feiniaojin/Thinking-in-DDD" },
     ],
     footer: {
-      copyright: 'Copyright © 2020-present Qin Yujie'
+      copyright: "Copyright © 2020-present Qin Yujie",
     },
     sidebar: [
+      {
+        items: [
+          {
+            text: "项目主页",
+            link: "/0/0.0",
+          },
+        ],
+      },
       {
         text: "0. 前言",
         collapsible: true,
