@@ -41,7 +41,7 @@ export default {
         collapsible: true,
         items: [
           {
-            text: "1.1 领域驱动设计的概念",
+            text: "1.1 整体理解领域驱动设计",
             link: "/1/1.1",
           },
           {
@@ -49,7 +49,7 @@ export default {
             link: "/1/1.2",
           },
           {
-            text: "1.3 领域驱动设计落地答疑",
+            text: "1.3 DDD落地答疑",
             link: "/1/1.3",
           },
         ],
@@ -67,7 +67,7 @@ export default {
         ],
       },
       {
-        text: "3. 领域驱动设计核心概念",
+        text: "3. DDD核心概念",
         collapsible: true,
         items: [
           { text: "3.1 实体和值对象", link: "/3/3.1" },
