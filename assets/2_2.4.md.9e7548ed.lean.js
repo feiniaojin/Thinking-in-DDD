@@ -1,1 +1,0 @@
-import{_ as s,c as n,o as a,a as p}from"./app.8de1dd30.js";const C=JSON.parse('{"title":"2.4 应用架构各层实现细节","description":"","frontmatter":{},"headers":[],"relativePath":"2/2.4.md"}'),l={name:"2/2.4.md"},o=p("",91),e=[o];function t(c,r,y,i,D,A){return a(),n("div",null,e)}const d=s(l,[["render",t]]);export{C as __pageData,d as default};
