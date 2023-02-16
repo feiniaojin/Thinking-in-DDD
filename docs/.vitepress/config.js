@@ -1,7 +1,7 @@
 export default {
   title: "Thinking in DDD",
-  description: "领域驱动设计（DDD：Domain Driven Design）落地实战",
-  base: "/Thinking-in-DDD/",
+  description: "悟道DDD",
+  base: "/",
   themeConfig: {
     socialLinks: [
       { icon: "github", link: "https://github.com/feiniaojin/Thinking-in-DDD" },
@@ -9,6 +9,25 @@ export default {
     footer: {
       copyright: "Copyright © 2020-present Qin Yujie",
     },
+    nav: [
+      {
+        text: "悟道DDD",
+        link: "/0/0.0.md",
+        activeMatch: "/",
+      },
+      {
+        text: "企业信息架构",
+        link: "https://github.com/feiniaojin/architecture-framework",
+      },
+      {
+        text: "悟道项目管理",
+        link: "https://github.com/feiniaojin/project-management",
+      },
+      {
+        text: "悟道产品经理",
+        link: "https://github.com/feiniaojin/product-manager",
+      },
+    ],
     sidebar: [
       {
         items: [
@@ -74,6 +93,7 @@ export default {
           { text: "3.2 聚合与聚合根", link: "/3/3.2" },
           { text: "3.3 限界上下文以及上下文映射", link: "/3/3.3" },
           { text: "3.4 子域", link: "/3/3.4" },
+          { text: "3.5 领域服务", link: "/3/3.5" },
         ],
       },
       {

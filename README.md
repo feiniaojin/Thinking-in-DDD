@@ -1,3 +1,5 @@
+
+
 # Thinking-in-DDD
 
 ## 项目介绍
@@ -9,7 +11,6 @@
 ### 在线阅读
 
 本文档已部署到Github Pages，请点击[在线阅读](https://feiniaojin.github.io/Thinking-in-DDD/)。
-
 
 ### 本地阅读
 
@@ -28,7 +29,9 @@ $ yarn add all
 # 启动工程
 $ yarn docs:dev
 ```
+
 工程启动后，访问链接为:
+
 ```shell
 http://localhost:5173/Thinking-in-DDD/
 ```
