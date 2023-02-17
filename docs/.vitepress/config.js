@@ -3,8 +3,8 @@ export default {
   description: "悟道DDD",
   base: "/",
   head: [
-      ['link', { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    ],
+      ['link', { rel: 'icon', href: '/favicon.ico' }]
+  ],
   themeConfig: {
     socialLinks: [
       { icon: "github", link: "https://github.com/feiniaojin/Thinking-in-DDD" },
