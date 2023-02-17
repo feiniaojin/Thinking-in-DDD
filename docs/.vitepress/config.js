@@ -1,5 +1,5 @@
 export default {
-  title: "Thinking in DDD",
+  title: "悟道DDD",
   description: "悟道DDD",
   base: "/",
   head: [
