@@ -1,5 +1,5 @@
 export default {
-  title: "悟道DDD",
+  title: "Thinking in DDD",
   description: "悟道DDD",
   base: "/",
   head: [
@@ -35,7 +35,7 @@ export default {
       {
         items: [
           {
-            text: "项目主页",
+            text: "README",
             link: "/0/0.0",
           },
         ],

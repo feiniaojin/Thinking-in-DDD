@@ -1,5 +1,5 @@
 ---
-title: Thinking in DDD
+title: 悟道DDD
 layout: home
 hero:
   name: Thinking in DDD
