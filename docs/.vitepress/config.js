@@ -3,7 +3,7 @@ export default {
   description: "悟道DDD",
   base: "/",
   head: [
-      ['link', { rel: 'icon', href: '/favicon.ico' }]
+    ['link', { rel: 'icon', href: '/favicon.ico' }]
   ],
   themeConfig: {
     socialLinks: [
@@ -89,22 +89,21 @@ export default {
         ],
       },
       {
-        text: "3. DDD核心概念",
+        text: "DDD核心概念",
         collapsible: true,
         items: [
-          { text: "3.1 实体和值对象", link: "/3/3.1" },
-          { text: "3.2 聚合与聚合根", link: "/3/3.2" },
-          { text: "3.3 限界上下文和子域", link: "/3/3.3" },
-          { text: "3.4 上下文映射", link: "/3/3.4" },
-          { text: "3.5 领域服务", link: "/3/3.5" },
+          { text: "实体和值对象", link: "/3/EntityAndValueObject" },
+          { text: "聚合与聚合根", link: "/3/Aggregate" },
+          { text: "领域服务", link: "/3/DomainService" },
         ],
       },
+
       {
-        text: "4. DDD核心组件",
+        text: "DDD核心组件",
         collapsible: true,
         items: [
-          { text: "4.1 Repository", link: "/4/4.1" },
-          { text: "4.2 Factory", link: "/4/4.2" },
+          { text: "Repository", link: "/4/Repository" },
+          { text: "Factory", link: "/4/Factory" },
         ],
       },
       {
@@ -112,7 +111,6 @@ export default {
         collapsible: true,
         items: [
           { text: "5.1 GoF设计模式", link: "/5/5.1" },
-          { text: "5.2 规约模式", link: "/5/5.2" },
           { text: "5.3 防腐层", link: "/5/5.3" },
           { text: "5.4 无副作用函数", link: "/5/5.4" },
         ],
@@ -121,8 +119,8 @@ export default {
         text: "6. 领域事件",
         collapsible: true,
         items: [
-          { text: "6.1 领域事件", link: "/6/6.1" },
           { text: "6.2 幂等设计", link: "/6/6.2" },
+          { text: "6.1 领域事件", link: "/6/6.1" },
         ],
       },
       {
@@ -134,7 +132,7 @@ export default {
         ],
       },
       {
-        text: "8. 一致性",
+        text: "8.一致性",
         collapsible: true,
         items: [
           { text: "8.1 聚合内事务实现", link: "/8/8.1" },
@@ -142,30 +140,13 @@ export default {
         ],
       },
       {
-        text: "9. DDD下的代码质量",
+        text: "战略设计",
         collapsible: true,
         items: [
-          { text: "9.1 单元测试", link: "/9/9.1" },
-          { text: "9.2 代码规范", link: "/9/9.2" },
-          { text: "9.3 静态扫描", link: "/9/9.3" },
-        ],
-      },
-      {
-        text: "10. DDD生态建设",
-        collapsible: true,
-        items: [
-          { text: "10.1 脚手架", link: "/10/10.1" },
-          { text: "10.2 代码生成器", link: "/10/10.2" },
-          { text: "10.3 Graceful Response", link: "/10/10.3" },
-          { text: "10.4 Pie", link: "/10/10.3" },
-        ],
-      },
-      {
-        text: "11. 领域建模",
-        collapsible: true,
-        items: [
-          { text: "11.1 事件风暴", link: "/11/11.1" },
-          { text: "11.2 四色建模", link: "/11/11.2" },
+          { text: "战略设计", link: "StrategicDesign/StrategicDesign" },
+          { text: "限界上下文", link: "StrategicDesign/BoundContext" },
+          { text: "上下文映射", link: "StrategicDesign/ContextMap" },
+          { text: "子域", link: "/3/3.3" }
         ],
       },
     ],

@@ -1,4 +1,4 @@
-# 4.1 Repository
+# Repository
 
 假设我们在开发一个CMS应用，其核心子域是内容子域，内容子域领域模型的聚合根我们称之为Article（文章）。
 
