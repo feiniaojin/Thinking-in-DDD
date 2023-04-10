@@ -116,11 +116,11 @@ export default {
         ],
       },
       {
-        text: "6. 领域事件",
+        text: "领域事件",
         collapsible: true,
         items: [
-          { text: "6.2 幂等设计", link: "/6/6.2" },
-          { text: "6.1 领域事件", link: "/6/6.1" },
+          { text: "幂等设计", link: "/6/Idempotent" },
+          { text: "领域事件", link: "/6/DomainEvent" },
         ],
       },
       {
