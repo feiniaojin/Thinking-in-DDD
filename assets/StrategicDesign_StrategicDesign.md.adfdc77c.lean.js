@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a,a as r}from"./app.478968b7.js";const S=JSON.parse('{"title":"战略设计","description":"","frontmatter":{},"headers":[],"relativePath":"StrategicDesign/StrategicDesign.md"}'),s={name:"StrategicDesign/StrategicDesign.md"},p=r("",9),_=[p];function c(i,n,o,D,d,g){return a(),t("div",null,_)}const l=e(s,[["render",c]]);export{S as __pageData,l as default};
