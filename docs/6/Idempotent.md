@@ -97,3 +97,5 @@ update t set active_state=2 where id=1 and active_state=1;
 服务端判断该 token 是否在缓存中，如果不在则认定该 token 已使用，将拒绝执行业务逻辑并返回提示；
 
 如果服务端判断缓存中存在该 token，则认为该 token 未使用过，先移除缓存中的 token 再继续执行业务逻辑。
+
+<!--@include: ../footer.md-->

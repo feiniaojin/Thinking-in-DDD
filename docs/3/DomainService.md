@@ -63,3 +63,4 @@ public class ApplicationService{
 
 应用服务（Application Service）不是领域知识，应用服务也不应该去理解领域模型，不会做业务逻辑处理。
 
+<!--@include: ../footer.md-->

@@ -385,3 +385,5 @@ public class ArticleEntity extends AbstractDomainMask implements Entity {
 * 获取文章详情
 
 ![](https://p3-sign.toutiaoimg.com/tos-cn-i-qvj2lq49k0/fc5f50d1e93f4dce8401c9dc72ac0ab2~noop.image?_iz=58558&from=article.pc_detail&x-expires=1675792891&x-signature=joLhVm%2BJh62q3xPUasjlCQj6OSk%3D)获取文章详情的测试用例
+
+<!--@include: ../footer.md-->

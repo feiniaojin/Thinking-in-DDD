@@ -223,3 +223,4 @@ public class RoleResourceBinding {
 
 重点关注1:N的集合属性，这些属性有可能因为业务需要，需要提升为聚合根。
 
+<!--@include: ../footer.md-->

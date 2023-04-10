@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Thinking in DDD
   text: 悟道DDD
-  tagline: 悟道领域一念间，代码如诗三百篇
+  tagline: 一朝悟道DDD，从此Coding很犀利
   actions:
     - theme: brand
       text: 开始学习 →
@@ -15,7 +15,11 @@ hero:
 
 features:
   - title: 准确理解DDD概念
-    details: 众说纷纭，正法难求，带你走出邪见
-  - title: DDD落地实战
-    details: 拨云见日，走出迷障，真正落地DDD
+    details: 逐个击破DDD概念，从此DDD落地无盲区
+  - title: 充血模型
+    details: 真正基于充血模型去讲解DDD，不会拿贫血模型糊弄你
+  - title: 微服务场景DDD实战
+    details: 如何在微服务场景下落地DDD
+  - title: 互联网DDD实战
+    details: 彻底讲解互联网高并发场景下如何实战DDD  
 ---
