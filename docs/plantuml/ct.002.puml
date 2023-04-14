@@ -1,0 +1,28 @@
+@startuml
+
+!include https://gitee.com/igingo/C4-PlantUML/raw/master/C4_Context.puml
+!include https://gitee.com/igingo/C4-PlantUML/raw/master/C4_Container.puml
+!include https://gitee.com/igingo/C4-PlantUML/raw/master/C4_Component.puml
+
+title "Service抽取业务逻辑之后的架构图"
+
+Person(P_User, "用户","用户")
+
+System_Boundary(SB_APP, "系统边界"){
+    Container(C_Controller, "Controller", "控制层","接受请求")
+    Container(C_Service, "Service","服务层", "协调模型层和访问层完成业务操作")
+    Container(C_Model, "Model","模型层", "业务逻辑处理")
+    Container(C_Dao, "Dao","数据访问层", "数据持久化")
+}
+
+Rel(P_User, C_Controller, "1.用户发起请求")
+Rel(C_Controller, C_Service, "2.调用Service完成业务操作")
+Rel(C_Service, C_Model, "3.业务逻辑处理")
+Rel(C_Service, C_Dao, "4.数据持久化")
+
+
+left to right direction
+
+SHOW_LEGEND()
+
+@enduml

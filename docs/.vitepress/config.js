@@ -19,7 +19,7 @@ export default {
         activeMatch: "/",
       },
       {
-        text: "企业信息架构",
+        text: "架构方法论",
         link: "https://github.com/feiniaojin/architecture-framework",
       },
       {
@@ -44,10 +44,6 @@ export default {
         text: "0. 前言",
         collapsible: true,
         items: [
-          {
-            text: "目录",
-            link: "/0/0.1",
-          },
           {
             text: "作者简介",
             link: "/0/0.2",
@@ -77,12 +73,12 @@ export default {
         ],
       },
       {
-        text: "2. DDD应用架构",
+        text: "DDD应用架构",
         collapsible: true,
         items: [
-          { text: "2.1 现有应用架构存在的问题", link: "/2/2.1" },
-          { text: "2.2 贫血模型和充血模型", link: "/2/2.2" },
-          { text: "2.3 应用架构演化", link: "/2/2.3" },
+          { text: "现有应用架构存在的问题", link: "/2/2.1" },
+          { text: "贫血模型和充血模型", link: "/2/2.2" },
+          { text: "应用架构演化", link: "/2/2.3" },
           { text: "2.4 应用架构各层实现细节", link: "/2/2.4" },
           { text: "2.5 领域对象的生命周期", link: "/2/2.5" },
           { text: "2.6 应用架构各层间数据流转", link: "/2/2.6" },
