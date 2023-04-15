@@ -9,6 +9,6 @@
 - 与即将推出的《TOGAF架构方法论》、《悟道项目管理》、《悟道团队管理》、《悟道产品经理》等书共用一个星球，同时可获得其他知识专题的答疑
 
 <div>
-    <img src="https://s1.ax1x.com/2023/04/11/ppLSrXd.jpg"/>
+    <img src="https://s1.ax1x.com/2023/04/15/p9p2mKP.jpg"/>
 </div>
 
