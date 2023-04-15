@@ -55,19 +55,19 @@ export default {
         ],
       },
       {
-        text: "1. 初步认识领域驱动设计",
+        text: "初步认识领域驱动设计",
         collapsible: true,
         items: [
           {
-            text: "1.1 整体理解领域驱动设计",
+            text: "整体理解领域驱动设计",
             link: "/1/1.1",
           },
           {
-            text: "1.2 如何学习DDD",
+            text: "如何学习DDD",
             link: "/1/1.2",
           },
           {
-            text: "1.3 DDD落地答疑",
+            text: "DDD落地答疑",
             link: "/1/1.3",
           },
         ],
@@ -79,9 +79,13 @@ export default {
           { text: "现有应用架构存在的问题", link: "/2/2.1" },
           { text: "贫血模型和充血模型", link: "/2/2.2" },
           { text: "应用架构演化", link: "/2/2.3" },
-          { text: "2.4 应用架构各层实现细节", link: "/2/2.4" },
-          { text: "2.5 领域对象的生命周期", link: "/2/2.5" },
-          { text: "2.6 应用架构各层间数据流转", link: "/2/2.6" },
+          { text: "应用架构各层实现细节", link: "/2/2.4" },
+          { text: "Domain层实现细节", link: "/2/DomainLayer" },
+          { text: "Infrastructure层实现细节", link: "/2/InfrastructureLayer" },
+          { text: "Application层实现细节", link: "/2/ApplicationLayer" },
+          { text: "UserInterface层实现细节", link: "/2/UserInterfaceLayer" },
+          { text: "领域对象的生命周期", link: "/2/2.5" },
+          { text: "应用架构各层间数据流转", link: "/2/2.6" },
         ],
       },
       {
