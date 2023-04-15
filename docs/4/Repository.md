@@ -1,39 +1,63 @@
 # Repository
 
-假设我们在开发一个CMS应用，其核心子域是内容子域，内容子域领域模型的聚合根我们称之为Article（文章）。
+只有聚合根才用于配套的 Repository。
 
-关于如何分析建模未来会专门展开，此处仅为了展示领域模型与数据模型阻抗不匹配的问题以及如何领域模型与数据模型的映射。
+Repository 是非常重要的组件，主要有几种职责：
 
-## 4.1.1 初步领域建模
+- 将聚合根持久化到数据库
 
-首先，分析Article的行为。类似公众号，一般会先创建一个草稿，所以Article有一个创建草稿的能力；创建好的公众号文章，可以修改标题或者内容；最后可以把草稿箱的文章发布到公众号，读者这时候可以进行阅读。
+Repository 的`save`方法中，将聚合根转成数据对象，然后持久化到数据库。
 
-其次，分析Article的属性。文章需要有title(标题)、content(正文)两个基本的字段；Article作为一个实体，需要有自己的唯一标识，我们称之为articleId；Article涉及发布或者未发布，所以还需要有记录发布状态的的字段publishState。
+- 将聚合根从数据库加载到内存；
 
-于是我们得到了一个聚合根Article，如下面代码，方法的入参出参暂时先不用过多关注。
+Repository 的`load`方法中，查询数据库获得数据对象，再将数据对象拼装成将聚合根。
+
+- 数据库事务控制。
+
+本文将以一个 CMS 应用为例，讲解 Repository 的实现细节，展示领域模型与数据模型阻抗不匹配的问题以及如何领域模型与数据模型的映射。
+
+CMS 应用的核心子域是内容子域，内容子域领域模型的聚合根我们称之为 Article（文章）。
+
+## 1. 初步领域建模
+
+首先，分析 Article 的行为。
+
+- 类似公众号，一般会先创建一个草稿，所以 Article 有一个创建草稿的能力；
+- 创建好的公众号文章，可以修改标题或者内容；
+- 可以把草稿箱的文章发布到公众号，读者这时候可以进行阅读。
+
+其次，分析 Article 的属性。文章需要有 title(标题)、content(正文)两个基本的字段；Article 作为一个实体，需要有自己的唯一标识，我们称之为
+articleId；Article 涉及发布或者未发布，所以还需要有记录发布状态的的字段 publishState。
+
+于是我们得到了一个实体（也是聚合根） Article，如下面代码，方法的入参出参暂时先不用过多关注。
 
 ```java
-public class Article{
+public class Article {
 
-  private String articleId;
-  private String title;
-  private String content;
-  private Integer publishState;
+    private String articleId;
+    private String title;
+    private String content;
+    private Integer publishState;
 
-  public void createDraft(){}
+    public void createDraft() {
+    }
 
-  public void modifyTitle(){}
+    public void modifyTitle() {
+    }
 
-  public void modifyContent(){}
+    public void modifyContent() {
+    }
 
-  public void publishArticle(){}
-  
+    public void publishArticle() {
+    }
+
 }
 ```
 
-## 4.1.2 领域知识封装
+## 2. 领域知识封装
 
-再进一步思考，我们每次通过articleId进行业务操作时，都需要判断articleId是否存在，所以我们把articleId字段建模为一个值对象，这样每次创建ArticleId时，构造方法中都会进行非空判断，这样把判断逻辑封装起来，想知道ArticleId有什么业务逻辑只需要看ArticleId的代码即可。
+再进一步思考，我们每次通过 articleId 进行业务操作时，都需要判断 articleId 是否存在，所以我们把 articleId 字段建模为一个值对象，这样每次创建
+ArticleId 时，构造方法中都会进行非空判断，这样把判断逻辑封装起来，想知道 articleId 有什么业务约束只需要看 ArticleId 的代码即可。
 
 ```java
 public class ArticleId implements EntityId<String> {
@@ -49,6 +73,10 @@ public class ArticleId implements EntityId<String> {
     }
 
     public void setValue(String value) {
+        //有值的情况下不允许修改
+        if (this.value != null) {
+            throw new UnsupportedOperationException();
+        }
         this.check(value);
         this.value = value;
     }
@@ -67,9 +95,11 @@ public class ArticleId implements EntityId<String> {
 }
 ```
 
-领域驱动设计不推荐我们在Application层使用set方法直接赋值，但是有时候我们使用的序列化框架需要进行set/get，所以我们提供了set方法，同时我们要注意在关键属性的set方法中也进行业务校验，避免盲区；另外，要在团队内部形成开发指南，在开发者的层面达成共识，避免在Application层使用没有业务含义的set方法。
+领域驱动设计不推荐我们在 Application 层使用 set 方法直接赋值，但是有时候我们使用的框架需要进行 set/get，所以我们提供了
+set 方法，同时我们要注意在关键属性的 set 方法中也进行业务校验，避免盲区；另外，要在团队内部形成开发指南，在开发者的层面达成共识，避免在
+Application 层使用没有业务含义的 set 方法。
 
-思考titile和content这两个字段，自身可能包含了非空、长度限制等逻辑，并且其生命周期与聚合根的生命周期相同，也不具备自己的唯一标识，所以可以将其建模为值对象。假设titile字段不允许长度超过64，可以得到以下的值对象。
+思考 titile 和 content 这两个字段，自身可能包含了非空、长度限制等逻辑，并且其生命周期与聚合根的生命周期相同，也不具备自己的唯一标识，所以可以将其建模为值对象。假设titile 字段不允许长度超过 64，可以得到以下的值对象。
 
 ```java
 //标题字段建模为值对象（Value Object）
@@ -91,6 +121,9 @@ public class ArticleTitle implements ValueObject<String> {
     }
 
     public void setValue(String value) {
+        if (this.value != null) {
+            throw new UnsupportedOperationException();
+        }
         this.check(value);
         this.value = value;
     }
@@ -118,10 +151,13 @@ public class ArticleContent implements ValueObject<String> {
     }
 
     public void setValue(String value) {
+        if (this.value != null) {
+            throw new UnsupportedOperationException();
+        }
         this.check(value);
         this.value = value;
     }
-  
+
     //未来通过规约模式做进一步优化
     private void check(String value) {
         Objects.requireNonNull(value);
@@ -137,42 +173,49 @@ public class ArticleContent implements ValueObject<String> {
 }
 ```
 
-到这里，我们的领域模型Article变成：
+到这里，我们的领域模型 Article 变成：
 
 ```java
-public class Article{
+public class Article {
 
-  private ArticleId articleId;
-  private ArticleTitle title;
-  private ArticleContent content;
-  private Integer state;
+    private ArticleId articleId;
+    private ArticleTitle title;
+    private ArticleContent content;
+    private Integer state;
 
-  public void createDraft(){}
+    public void createDraft() {
+    }
 
-  public void modifyTitle(){}
+    public void modifyTitle() {
+    }
 
-  public void modifyContent(){}
+    public void modifyContent() {
+    }
 
-  public void publishArticle(){}
-  
+    public void publishArticle() {
+    }
+
 }
 ```
 
-## 4.1.3 领域模型持久化
+当然，`state`也可以改用枚举进行表达，在此则直接用Integer类型。
 
-领域模型的建模是不关心持久化的，只关心聚合根内领域知识是否完整，但是我们在基础设施层实现Repository时，就需要考虑如何建模数据库表结构了。
+## 3. 领域模型与数据模型阻抗不匹配
 
-考虑ArticleContent（文章正文）这个值对象，它的值一般是富文本，文本比较长而且长度不定。这类文本在数据库层面，我们一般用text，Blob之类的类型去存储，为了考虑性能还要单独一张表，通过articleId提供查找。
+领域模型的建模是不关心持久化的，只关心聚合根内领域知识是否完整，但是我们在基础设施层实现 Repository 时，就需要考虑如何建模数据库表结构了。
 
-所以，聚合根Article在数据库层面要存成两张表。
+考虑 ArticleContent（文章正文）这个值对象，它的值一般是富文本，文本比较长而且长度不定。这类文本在数据库层面，我们一般用
+text，Blob 之类的类型去存储，为了考虑性能还要单独一张表，通过 articleId 提供查找。
 
-再者，由于公司数据库开发的规范，要求每张表必须有deleted、created_by、created_time、modified_by、modified_time这几个字段。
+所以，聚合根 Article 在数据库层面要存成两张表。
 
-最后，还要求每张表都有一个自增id字段，并且自增id不能用于业务操作。
+再者，由于公司数据库开发的规范，要求每张表必须有 deleted、created_by、created_time、modified_by、modified_time 这几个字段。
 
-这个时候，我们得到了文章Article在数据存储层的表结构，如下：
+最后，还要求每张表都有一个自增 id 字段，并且自增 id 不能用于业务操作。
 
-* Article的基本属性由cms_article表进行存储
+这个时候，我们得到了文章 Article 在数据存储层的表结构，如下：
+
+- Article 的基本属性由 cms_article 表进行存储
 
 ```sql
 CREATE TABLE `cms_article` (
@@ -191,7 +234,7 @@ CREATE TABLE `cms_article` (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE utf8mb4_bin COMMENT 'article主表';
 ```
 
-* Article的正文属性由cms_article_content表进行存储
+- Article 的正文属性由 cms_article_content 表进行存储
 
 ```sql
 CREATE TABLE `cms_article_content` (
@@ -209,13 +252,17 @@ CREATE TABLE `cms_article_content` (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE utf8mb4_bin COMMENT 'article正文内容表';
 ```
 
-现在Article、ArticleContent都要记录很多数据库层面的信息，例如deleted、created_by、created_time、modified_by、modified_time这几个字段。
+现在 Article、ArticleContent 都要记录很多数据库层面的信息，例如 deleted、created_by、created_time、modified_by、modified_time
+这几个字段。
 
-如果我们直接把这些字段放到值对象中会造成误解，因为这些不是值对象的领域知识，但是为了持久化我们不得不做适当的妥协。我们通过层超类型（Layer Supertype）的模式，把这些额外的字段抽取封装到一个抽象类中，在项目中我将之命名为AbstractDomainMask，可以理解为领域模型掩码或者领域模型面具，主要是为了掩盖这些数据库层面的字段。
+如果我们直接把这些字段放到值对象中会造成误解，因为这些不是值对象的领域知识，但是为了持久化我们不得不做适当的妥协。我们通过层超类型（Layer
+Supertype）的模式，把这些额外的字段抽取封装到一个抽象类中，在项目中我将之命名为
+AbstractDomainMask，可以理解为领域模型掩码或者领域模型面具，主要是为了掩盖这些数据库层面的字段。
 
-AbstractDomainMask的代码如下：
+AbstractDomainMask 的代码如下：
 
 ```java
+
 @Data
 public abstract class AbstractDomainMask {
 
@@ -252,18 +299,19 @@ public abstract class AbstractDomainMask {
 
 需要进行持久化的实体和值对象，都会继承该抽象类。
 
-ArticleContent还提供了工厂方法用于从旧的ArticleContent对象中生成新的对象，生成的过程中仅把AbstractDomainMask中的字段带过去。
+ArticleContent 还提供了工厂方法用于从旧的 ArticleContent 对象中生成新的对象，生成的过程中仅把 AbstractDomainMask 中的字段带过去。
 
-ArticleContent代码如下：
+ArticleContent 代码如下：
 
 ```java
 //正文内容字段建模为值对象（Value Object）,并继承了层超类型AbstractDomainMask
 public class ArticleContent extends AbstractDomainMask implements ValueObject<String> {
 
-  	private String value;
-  
+    private String value;
+
     public ArticleContent() {
     }
+
     public ArticleContent(String value) {
         this.check(value);
         this.value = value;
@@ -273,6 +321,7 @@ public class ArticleContent extends AbstractDomainMask implements ValueObject<St
         this.check(value);
         this.value = value;
     }
+
     private void check(String value) {
         Objects.requireNonNull(value);
         if ("".equals(value)) {
@@ -293,7 +342,7 @@ public class ArticleContent extends AbstractDomainMask implements ValueObject<St
      */
     public static ArticleContent newInstanceFrom(AbstractDomainMask old, String value) {
         ArticleContent newContent = new ArticleContent();
-    
+
         newContent.setDeleted(old.getDeleted());
         newContent.setCreatedBy(old.getCreatedBy());
         newContent.setCreatedTime(old.getCreatedTime());
@@ -301,89 +350,161 @@ public class ArticleContent extends AbstractDomainMask implements ValueObject<St
         newContent.setModifiedTime(old.getModifiedTime());
         newContent.setVersion(old.getVersion());
         newContent.setId(old.getId());
-    
+
         newContent.setValue(value);
         return newContent;
     }
-  
+
 }
 ```
 
-此时Article的代码如下:
+此时 Article 的代码如下:
 
 ```java
-public class Article extends AbstractDomainMask implements Entity{
+public class Article extends AbstractDomainMask implements Entity {
 
-  private ArticleId articleId;
-  private ArticleTitle title;
-  private ArticleContent content;
-  private Integer state;
+    private ArticleId articleId;
+    private ArticleTitle title;
+    private ArticleContent content;
+    private Integer state;
 
-  public void createDraft(ArticleCreateCmd cmd){}
+    public void createDraft(ArticleCreateCmd cmd) {
+    }
 
-  public void modifyTitle(ArticleModifyTitleCmd cmd){}
+    public void modifyTitle(ArticleModifyTitleCmd cmd) {
+    }
 
-  public void modifyContent(ArticleModifyContentCmd){}
+    public void modifyContent(ArticleModifyContentCmd) {
+    }
 
-  public void publishArticle(ArticlePublishCmd cmd){}
+    public void publishArticle(ArticlePublishCmd cmd) {
+    }
 }
 ```
 
-Article领域模型与数据模型的映射，主要体现在Respository实现类的load和save方法，详细可以看项目代码，代码的获取方式见本文开头。
+ArticleContent 是一个值对象，content 变更时会重新创建一个新的对象去替换旧的，但是创建新的 ArticleContent 时，需要把旧对象中
+AbstractDomainMask 里面的字段带过去。
 
-ArticleContent是一个值对象，content变更时会重新创建一个新的对象去替换旧的，但是创建新的ArticleContent时，需要把旧对象中AbstractDomainMask里面的字段带过去。
-
-以下是content变更时的示例代码：
+以下是 content 变更时的示例代码：
 
 ```java
 //Application层
 public class ArticleApplicationService {
 
-  //……其他代码省略
-  @Retryable(value = OptimisticLockingFailureException.class, maxAttempts = 2)
-  public void modifyContent(ArticleModifyContentCmd cmd) {
-      ArticleEntity entity = domainRepository.load(new ArticleId(cmd.getArticleId()));
-      entity.modifyContent(ArticleContent.newInstanceFrom(entity.getContent(),
-              cmd.getContent()));
-      domainRepository.save(entity);
-      domainEventPublisher.publish(entity.domainEvents());
-  }
-  
+    //……其他代码省略
+    @Retryable(value = OptimisticLockingFailureException.class, maxAttempts = 2)
+    public void modifyContent(ArticleModifyContentCmd cmd) {
+        ArticleEntity entity = domainRepository.load(new ArticleId(cmd.getArticleId()));
+        entity.modifyContent(ArticleContent.newInstanceFrom(entity.getContent(),
+                cmd.getContent()));
+        domainRepository.save(entity);
+        domainEventPublisher.publish(entity.domainEvents());
+    }
+
 }
 
 
 //领域层实体
 public class ArticleEntity extends AbstractDomainMask implements Entity {
 
-  //……其他代码省略
+    //……其他代码省略
 
-  //修改内容
-  public void modifyContent(ArticleContent articleContent) {
-      this.setContent(articleContent);
-      events.add(new ModifyContentEvent(this.getArticleId().getValue(),
-              articleContent.getValue()));
-  }
+    //修改内容
+    public void modifyContent(ArticleContent articleContent) {
+        this.setContent(articleContent);
+        events.add(new ModifyContentEvent(this.getArticleId().getValue(),
+                articleContent.getValue()));
+    }
 
-  //……其他代码省略
+    //……其他代码省略
 }
 ```
 
-4.接口测试用例
+## 4. load和save方法的实现
 
-* 创建草稿
+以下是Repository中load和save方法的实现。
 
-![](https://p3-sign.toutiaoimg.com/tos-cn-i-qvj2lq49k0/4bef621cf352496ba2b7367d143fde93~noop.image?_iz=58558&from=article.pc_detail&x-expires=1675792891&x-signature=XdisxzF%2B7vwaJur2O24aQWwLjcg%3D)创建草稿的测试用例
+```java
+@Repository
+@Slf4j
+public class ArticleDomainRepositoryImpl implements ArticleDomainRepository {
 
-* 修改标题
+    @Override
+    public ArticleEntity load(ArticleId articleId) {
 
-![](https://p3-sign.toutiaoimg.com/tos-cn-i-qvj2lq49k0/e26e38014e854699a6a0a072048b40f8~noop.image?_iz=58558&from=article.pc_detail&x-expires=1675792891&x-signature=ZQjI2yfNznr0%2By2rjqTi%2BZpOqxs%3D)修改标题的测试用例
+        CmsArticle article = articleMapperEx.findOneByBizId(articleId.getValue());
+        if (article == null) {
+            log.error("查询不到article,articleId={}", articleId.getValue());
+            throw new NotFoundDomainException();
+        }
 
-* 修改正文
+        ArticleEntity entity = new ArticleEntity();
+        entity.setArticleTitle(new ArticleTitle(article.getTitle()));
+        entity.setPublishState(PublishState.getByCode(article.getPublishState()).getCode());
+        entity.setArticleId(articleId);
 
-![](https://p3-sign.toutiaoimg.com/tos-cn-i-qvj2lq49k0/353b74d419ee439ea2280ecdfee684d7~noop.image?_iz=58558&from=article.pc_detail&x-expires=1675792891&x-signature=i9OP8gaICQO%2Bt7z3F7RBWhhD%2Bto%3D)修改正文的测试用例
+        entity.setVersion(article.getVersion());
+        entity.setId(article.getId());
+        entity.setCreatedBy(article.getCreatedBy());
+        entity.setCreatedTime(article.getCreatedTime());
+        entity.setModifiedTime(article.getModifiedTime());
+        entity.setModifiedBy(article.getModifiedBy());
+        entity.setDeleted(article.getDeleted());
 
-* 获取文章详情
+        CmsArticleContent content = contentMapperEx.findOneByBizId(articleId.getValue());
 
-![](https://p3-sign.toutiaoimg.com/tos-cn-i-qvj2lq49k0/fc5f50d1e93f4dce8401c9dc72ac0ab2~noop.image?_iz=58558&from=article.pc_detail&x-expires=1675792891&x-signature=joLhVm%2BJh62q3xPUasjlCQj6OSk%3D)获取文章详情的测试用例
+        ArticleContent articleContent = new ArticleContent();
+        articleContent.setValue(content.getContent());
 
+        articleContent.setVersion(content.getVersion());
+        articleContent.setId(content.getId());
+        articleContent.setCreatedBy(content.getCreatedBy());
+        articleContent.setCreatedTime(content.getCreatedTime());
+        articleContent.setModifiedTime(content.getModifiedTime());
+        articleContent.setModifiedBy(content.getModifiedBy());
+        articleContent.setDeleted(content.getDeleted());
+
+        entity.setContent(articleContent);
+
+        return entity;
+    }
+
+
+    @Override
+    @Transactional
+    public void save(ArticleEntity entity) {
+
+        CmsArticle cmsArticle = new CmsArticle();
+        cmsArticle.setTitle(entity.getArticleTitle().getValue());
+        //region
+        cmsArticle.setArticleId(entity.getArticleId().getValue());
+        cmsArticle.setPublishState(entity.getPublishState());
+
+        cmsArticle.setId(entity.getId());
+        cmsArticle.setCreatedBy(entity.getCreatedBy());
+        cmsArticle.setCreatedTime(entity.getCreatedTime());
+        cmsArticle.setModifiedBy(entity.getModifiedBy());
+        cmsArticle.setModifiedTime(entity.getModifiedTime());
+        cmsArticle.setVersion(entity.getVersion());
+        cmsArticle.setDeleted(entity.getDeleted());
+        //endregion
+        ArticleContent content = entity.getContent();
+        CmsArticleContent cmsArticleContent = new CmsArticleContent();
+        cmsArticleContent.setContent(content.getValue());
+        //region
+        cmsArticleContent.setArticleId(entity.getArticleId().getValue());
+
+        cmsArticleContent.setId(content.getId());
+        cmsArticleContent.setVersion(content.getVersion());
+        cmsArticleContent.setDeleted(content.getDeleted());
+        cmsArticleContent.setCreatedBy(content.getCreatedBy());
+        cmsArticleContent.setCreatedTime(content.getCreatedTime());
+        cmsArticleContent.setModifiedBy(content.getModifiedBy());
+        cmsArticleContent.setModifiedTime(content.getModifiedTime());
+        //endregion
+        cmsArticleRepository.save(cmsArticle);
+        cmsArticleContentRepository.save(cmsArticleContent);
+    }
+}
+```
 <!--@include: ../footer.md-->
