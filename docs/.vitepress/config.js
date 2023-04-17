@@ -107,12 +107,11 @@ export default {
         ],
       },
       {
-        text: "5. 复杂业务逻辑实现",
+        text: "复杂业务逻辑实现",
         collapsible: true,
         items: [
-          { text: "5.1 GoF设计模式", link: "/5/5.1" },
-          { text: "5.3 防腐层", link: "/5/5.3" },
-          { text: "5.4 无副作用函数", link: "/5/5.4" },
+          { text: "GoF设计模式", link: "/5/5.1" },
+          { text: "无副作用函数", link: "/5/5.4" }
         ],
       },
       {
@@ -124,19 +123,19 @@ export default {
         ],
       },
       {
-        text: "7. CQRS",
+        text: "CQRS与事件溯源",
         collapsible: true,
         items: [
-          { text: "7.1 CQRS", link: "/7/7.1" },
-          { text: "7.2 事件溯源", link: "/7/7.2" },
+          { text: "CQRS", link: "/7/7.1" },
+          { text: "事件溯源", link: "/7/7.2" },
         ],
       },
       {
-        text: "8.一致性",
+        text: "一致性",
         collapsible: true,
         items: [
-          { text: "8.1 聚合内事务实现", link: "/8/8.1" },
-          { text: "8.2 跨聚合事务处理", link: "/8/8.2" },
+          { text: "聚合内事务实现", link: "/8/8.1" },
+          { text: "跨聚合事务处理", link: "/8/8.2" },
         ],
       },
       {
@@ -146,7 +145,8 @@ export default {
           { text: "战略设计", link: "StrategicDesign/StrategicDesign" },
           { text: "限界上下文", link: "StrategicDesign/BoundContext" },
           { text: "上下文映射", link: "StrategicDesign/ContextMap" },
-          { text: "子域", link: "/3/3.3" }
+          { text: "子域", link: "/3/3.3" },
+          { text: "防腐层", link: "/5/5.3" }
         ],
       },
     ],

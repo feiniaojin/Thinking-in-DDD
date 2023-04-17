@@ -18,7 +18,7 @@
 
 ### 在线阅读
 
-本文档已部署到 Github Pages，并使用 CDN 进行加速，请点击[在线阅读](https://ddd.feiniaojin.com/)。
+本文档已部署到 Github Pages，并使用 CDN 进行加速，请点击[在线阅读](http://ddd.feiniaojin.com/)。
 
 ### 本地阅读
 
