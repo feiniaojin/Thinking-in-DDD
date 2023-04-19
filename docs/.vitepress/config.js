@@ -119,7 +119,10 @@ export default {
         collapsible: true,
         items: [
           { text: "幂等设计", link: "/6/Idempotent" },
-          { text: "领域事件", link: "/6/DomainEvent" },
+          { text: "领域事件1——初步了解", link: "/6/DomainEvent1" },
+          { text: "领域事件2——领域事件的生成", link: "/6/DomainEvent2" },
+          { text: "领域事件3——领域事件的发布", link: "/6/DomainEvent3" },
+          { text: "领域事件4——领域事件的订阅", link: "/6/DomainEvent4" },
         ],
       },
       {
