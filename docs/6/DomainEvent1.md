@@ -1,4 +1,4 @@
-# 领域事件Ⅰ——初步了解
+# 领域事件 1——领域事件的建模
 
 ## 1. 领域事件的概念
 
@@ -42,5 +42,62 @@
 - 进行限界上下文集成
 
 实现跨域模块的通信与协作。
+
+## 3. 领域事件的消息内容
+
+领域事件可能只包含业务主键、事件发生时间、事件类型，这种情况下，消费者可能需要调相应的接口查询出完整的业务信息以执行业务操作。
+
+举个例子：
+
+```json
+{
+  "eventType": "MobileChanged",
+  "rootId": "123456",
+  "eventTime": "1681812559707",
+  "eventId": "1234555"
+}
+```
+
+`rootId`即聚合根 ID，是执行业务操作的业务主键，订阅者可以通过 rootId 进行获得发生该领域事件的聚合根的信息；`eventId`是领域事件的 ID，订阅者可以根据其来实现幂等；`eventType`用来区分领域事件的类型;`eventTime`是发生该领域事件的事件。
+
+> 事件订阅者消费到消息之后，需要拿着 rootId 去查对应的服务，获取修改后的手机号的值。
+
+领域事件也可以使用`事件增强`的方式，在领域事件中包含消费者需要的完整信息，避免消费者进行额外的查询。
+
+```json
+{
+  "eventType": "MobileChanged",
+  "rootId": "123456",
+  "eventTime": "1681812559707",
+  "afterMobile": "168168168",
+  "eventId": "1234555"
+}
+```
+
+`afterMobile`是发生该`MobileChanged`事件后，用户手机号的值。
+
+> 上面这个消息中采取了事件增强的方式，消息中直接提供了修改后的手机号（afterMobile 字段），不需要再去调用接口查询。
+
+## 4. 领域事件的建模
+
+上文有提到领域事件应该建模为值对象，因此我们可以建模一个抽象的领域事件基类。
+
+示例代码如下。
+
+```java
+
+@Data
+public abstract class DomainEvent{
+
+    private String eventId;
+
+    private String eventType;
+
+    private String rootId;
+
+    private Long eventTime;
+}
+
+```
 
 <!--@include: ../footer.md-->

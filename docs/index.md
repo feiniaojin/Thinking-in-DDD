@@ -14,12 +14,12 @@ hero:
       link: https://github.com/feiniaojin/Thinking-in-DDD
 
 features:
-  - title: 准确理解DDD概念
-    details: 逐个击破DDD概念，从此DDD落地无盲区
+  - title: 与开发语言、框架无关
+    details: 基于Java语言讲解DDD落地，不与小众框架绑定，读者可轻易选择其他语言进行实践
   - title: 充血模型
-    details: 真正基于充血模型去讲解DDD，不会拿贫血模型糊弄你
-  - title: 微服务场景DDD实战
-    details: 如何在微服务场景下落地DDD
-  - title: 互联网DDD实战
-    details: 彻底讲解互联网高并发场景下如何实战DDD  
+    details: 真正基于充血模型去实践DDD，不会拿贫血模型糊弄读者
+  - title: 互联网微服务场景DDD实战
+    details: 代码级讲解如何在互联网高并发的微服务场景下落地DDD
+  - title: 注重实战
+    details: 注重真正的落地实战，不会为了讲解一个概念而提出新的概念
 ---
