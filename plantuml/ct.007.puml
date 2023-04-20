@@ -1,0 +1,46 @@
+@startuml
+
+!include https://gitee.com/igingo/C4-PlantUML/raw/master/C4_Context.puml
+!include https://gitee.com/igingo/C4-PlantUML/raw/master/C4_Container.puml
+!include https://gitee.com/igingo/C4-PlantUML/raw/master/C4_Component.puml
+
+title "直接发布+轮询发布消息补偿架构图"
+
+LAYOUT_LEFT_RIGHT()
+
+System_Boundary(SB_SYS1, "限界上下文1"){
+
+    Container(C_APP1, "DDD应用1","DDD架构应用"){
+        Component(C_UI, "User Interface","用户接口层", "接受业务处理请求")
+        Component(C_Application, "Application","应用层", "协调基础设施与领域模型完成业务逻辑")
+        Component(C_Domain, "Domain","领域层", "完成领域逻辑")
+        Component(C_InfrastructureDb, "InfrastructureDb","数据库基础设施层", "提供基础设施支持")
+        Component(C_InfrastructureMq, "InfrastructureMq","消息中间件基础设施层", "提供基础设施支持")
+    }
+    ContainerDb(DB, "Database", "数据库")
+
+    Container(C_Worker1, "定时任务1","消息补偿任务")
+}
+
+ContainerQueue(MQ, "MQ", "消息中间件")
+
+System_Boundary(SB_SYS2, "限界上下文2"){
+    Container_Ext(C_APP2, "DDD应用2","DDD架构应用")
+}
+
+Rel(C_UI, C_Application, "a1.调用应用服务")
+Rel_L(C_Application, C_Domain, "a2.完成业务逻辑，并生成领域事件")
+Rel(C_Application, C_InfrastructureDb, "a3.调用基础设施完成持久化领域模型和领域事件")
+Rel(C_InfrastructureDb, DB, "a4.Repository持久化领域模型和领域事件")
+
+Rel(C_Application, C_InfrastructureMq, "a5.发布领域事件")
+Rel(C_InfrastructureMq, MQ, "a6.发布领域事件至消息中间件")
+Rel(C_Application, C_InfrastructureDb, "a7.修改事件存储中的事件为已发布状态")
+
+Rel(C_Worker1, DB, "b1.定时扫库加载超时未发送成功的领域事件")
+Rel_L(C_Worker1, MQ, "b2.补偿发送领域事件")
+Rel_L(C_Worker1, DB, "b3.更新领域事件状态为发送成功")
+
+Rel_U(C_APP2, MQ, "c1.订阅消费领域事件")
+
+@enduml

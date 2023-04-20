@@ -79,7 +79,9 @@ public class DomainRepository {
 
 ## 2. 直接发布+轮询发布消息补偿
 
-在实现了事件存储之后，我们可以依赖事件存储实现领域事件的可靠发布。
+在实现了事件存储之后，我们可以依赖事件存储实现领域事件的可靠发布，整体实现过程如下图：
+
+![直接发布+轮询发布消息补偿架构图](/images/2/ct.007.jpg)
 
 我们在`domain_event_store`表中加入一个发布状态字段，用于标识领域事件是否成功发送至消息中间件。
 
@@ -87,7 +89,7 @@ public class DomainRepository {
 CREATE TABLE `domain_event_store`(
   `event_id` varchar(64) NOT NULL COMMENT '事件id',
   `event_body` varchar(65000) NOT NULL COMMENT '事件消息体',
-  `ts` datetime NOT NULL COMMENT '事件发生时间',
+  `event_time` datetime NOT NULL COMMENT '事件发生时间',
   `event_type` varchar (32) NOT NULL COMMENT '事件类型',
   `event_state` INT NOT NULL DEFAULT 0 COMMENT '事件状态，0发布中，1已发布',
   PRIMARY KEY(`event_id`)
@@ -136,5 +138,24 @@ public class Task {
 ```
 
 ## 3. 采用事务日志拖尾发布领域事件
+
+轮询数据库进行领域事件补偿的方案可以可靠地发布领域事件，但是可能给数据库造成压力，我们可以采用事务日志拖尾的方式发布领域事件。
+
+事务日志拖尾的含义是监听事务日志，获取到增量的新数据。事务日志拖尾的实现，可以选择一些 CDC 中间件，常见的 CDC 中间件有：Flink CDC、Debezium、DataX、Canal 等。
+
+Debezium 基于 MySQL 数据库增量日志进行解析，提供增量数据订阅，并且支持 MySQL、PostgreSQL、Oracle、SqlServer、MongoDB 主流数据库，因此我们选择 Debezium 进行示例讲解。
+
+
+采用事务日志拖尾发布领域事件的架构图如下：
+
+![采用事务日志拖尾发布领域事件的架构图](/images/2/ct.008.jpg)
+
+当采用日志拖尾的形式时，主要有几点区别：
+
+- Application层不再手动发布领域事件，领域事件的发布依赖CDC，CDC捕获数据库事务日志再推送消息中间件
+
+- 不需要额外的定时任务进行扫表标记领域事件的状态，减轻数据库压力
+
+- CDC应用可成为统一的消息下发层，在此处将消息处理后转发到各个不同的Topic
 
 <!--@include: ../footer.md-->
