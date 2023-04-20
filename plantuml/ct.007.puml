@@ -41,6 +41,6 @@ Rel(C_Worker1, DB, "b1.定时扫库加载超时未发送成功的领域事件")
 Rel_L(C_Worker1, MQ, "b2.补偿发送领域事件")
 Rel_L(C_Worker1, DB, "b3.更新领域事件状态为发送成功")
 
-Rel_U(C_APP2, MQ, "c1.订阅消费领域事件")
+Rel_D(C_APP2, MQ, "c1.订阅消费领域事件")
 
 @enduml
