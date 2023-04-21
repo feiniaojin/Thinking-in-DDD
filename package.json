@@ -11,7 +11,6 @@
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "export-pdf": "press-export-pdf export /Users/qinyujie3/ddd.pdf"
+    "docs:preview": "vitepress preview docs"
   }
 }

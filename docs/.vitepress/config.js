@@ -137,8 +137,8 @@ export default {
         text: "一致性",
         collapsible: true,
         items: [
-          { text: "聚合内事务实现", link: "/8/8.1" },
-          { text: "跨聚合事务处理", link: "/8/8.2" },
+          { text: "聚合内事务实现", link: "/8/ConsistencyInAggregate" },
+          { text: "跨聚合事务处理", link: "/8/ConsistencyBetweenAggregate" },
         ],
       },
       {

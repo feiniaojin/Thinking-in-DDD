@@ -10,7 +10,7 @@ Domain 层定义了很多支撑领域模型完成业务操作组件，Infrastruc
 
 ## 2. 封装 Infrastructure 层内部知识
 
-Infrastructure 层通过实现 Domain 层定义的组件为 Aplication 层提供服务，并且 Application 层只能使用 Domain 包中定义的组件。Infrastructure 在实现这些组件时，不应该要求 Application 层掌握 Infrastructure 层的内部知识。
+Infrastructure 层通过实现 Domain 层定义的组件为 Application 层提供服务，并且 Application 层只能使用 Domain 包中定义的组件。Infrastructure 在实现这些组件时，不应该要求 Application 层掌握 Infrastructure 层的内部知识。
 
 举个例子，对于我们常用的 ORM 框架 MyBatis，我们有时候需要实现一个 Interceptor，例如一个用于打印 SQL 的 Interceptor，那么这个打印 SQL 的 Interceptor 就应该在 infrastructure-persistence 这个包内，不应该放置在 Application 层或者 User Interface 层。
 

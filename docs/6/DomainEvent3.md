@@ -20,7 +20,7 @@ Store）。
 CREATE TABLE `domain_event_store`(
   `event_id` varchar(64) NOT NULL COMMENT '事件id',
   `event_body` varchar(65000) NOT NULL COMMENT '事件消息体',
-  `ts` datetime NOT NULL COMMENT '事件发生时间',
+  `event_time` datetime NOT NULL COMMENT '事件发生时间',
   `event_type` varchar (32) NOT NULL COMMENT '事件类型',
   PRIMARY KEY(`event_id`)
 ) ENGINE = InnoDB;
@@ -145,17 +145,16 @@ public class Task {
 
 Debezium 基于 MySQL 数据库增量日志进行解析，提供增量数据订阅，并且支持 MySQL、PostgreSQL、Oracle、SqlServer、MongoDB 主流数据库，因此我们选择 Debezium 进行示例讲解。
 
-
 采用事务日志拖尾发布领域事件的架构图如下：
 
 ![采用事务日志拖尾发布领域事件的架构图](/images/2/ct.008.jpg)
 
 当采用日志拖尾的形式时，主要有几点区别：
 
-- Application层不再手动发布领域事件，领域事件的发布依赖CDC，CDC捕获数据库事务日志再推送消息中间件
+- Application 层不再手动发布领域事件，领域事件的发布依赖 CDC，CDC 捕获数据库事务日志再推送消息中间件
 
 - 不需要额外的定时任务进行扫表标记领域事件的状态，减轻数据库压力
 
-- CDC应用可成为统一的消息下发层，在此处将消息处理后转发到各个不同的Topic
+- CDC 应用可成为统一的消息下发层，在此处将消息处理后转发到各个不同的 Topic
 
 <!--@include: ../footer.md-->

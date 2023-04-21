@@ -1,6 +1,8 @@
 # Repository
 
-只有聚合根才用于配套的 Repository。
+## 1. Repository 职责限定
+
+只有聚合根才有配套的 Repository。
 
 Repository 是非常重要的组件，主要有几种职责：
 
@@ -8,17 +10,22 @@ Repository 是非常重要的组件，主要有几种职责：
 
 Repository 的`save`方法中，将聚合根转成数据对象，然后持久化到数据库。
 
-- 将聚合根从数据库加载到内存；
+- 将聚合根从数据库加载到内存
 
 Repository 的`load`方法中，查询数据库获得数据对象，再将数据对象拼装成将聚合根。
 
-- 数据库事务控制。
+- 数据库事务控制
+
+Repository的实现方案有两种：
+
+- 表级
+
+- 行级
+## 2. 初步领域建模
 
 本文将以一个 CMS 应用为例，讲解 Repository 的实现细节，展示领域模型与数据模型阻抗不匹配的问题以及如何领域模型与数据模型的映射。
 
 CMS 应用的核心子域是内容子域，内容子域领域模型的聚合根我们称之为 Article（文章）。
-
-## 1. 初步领域建模
 
 首先，分析 Article 的行为。
 
@@ -54,7 +61,7 @@ public class Article {
 }
 ```
 
-## 2. 领域知识封装
+## 3. 领域知识封装
 
 再进一步思考，我们每次通过 articleId 进行业务操作时，都需要判断 articleId 是否存在，所以我们把 articleId 字段建模为一个值对象，这样每次创建
 ArticleId 时，构造方法中都会进行非空判断，这样把判断逻辑封装起来，想知道 articleId 有什么业务约束只需要看 ArticleId 的代码即可。
@@ -99,7 +106,7 @@ public class ArticleId implements EntityId<String> {
 set 方法，同时我们要注意在关键属性的 set 方法中也进行业务校验，避免盲区；另外，要在团队内部形成开发指南，在开发者的层面达成共识，避免在
 Application 层使用没有业务含义的 set 方法。
 
-思考 titile 和 content 这两个字段，自身可能包含了非空、长度限制等逻辑，并且其生命周期与聚合根的生命周期相同，也不具备自己的唯一标识，所以可以将其建模为值对象。假设titile 字段不允许长度超过 64，可以得到以下的值对象。
+思考 title 和 content 这两个字段，自身可能包含了非空、长度限制等逻辑，并且其生命周期与聚合根的生命周期相同，也不具备自己的唯一标识，所以可以将其建模为值对象。假设 title 字段不允许长度超过 64，可以得到以下的值对象。
 
 ```java
 //标题字段建模为值对象（Value Object）
@@ -198,9 +205,9 @@ public class Article {
 }
 ```
 
-当然，`state`也可以改用枚举进行表达，在此则直接用Integer类型。
+当然，`state`也可以改用枚举进行表达，在此则直接用 Integer 类型。
 
-## 3. 领域模型与数据模型阻抗不匹配
+## 4. 领域模型与数据模型阻抗不匹配
 
 领域模型的建模是不关心持久化的，只关心聚合根内领域知识是否完整，但是我们在基础设施层实现 Repository 时，就需要考虑如何建模数据库表结构了。
 
@@ -420,9 +427,9 @@ public class ArticleEntity extends AbstractDomainMask implements Entity {
 }
 ```
 
-## 4. load和save方法的实现
+## 5. load 和 save 方法的实现
 
-以下是Repository中load和save方法的实现。
+以下是 Repository 中 load 和 save 方法的实现。
 
 ```java
 @Repository
@@ -507,4 +514,5 @@ public class ArticleDomainRepositoryImpl implements ArticleDomainRepository {
     }
 }
 ```
+
 <!--@include: ../footer.md-->

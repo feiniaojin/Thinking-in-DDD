@@ -28,7 +28,7 @@ Domain 层根据限界上下文分包，把所有的领域知识放到限界上�
 
 可以感受一下 java.util 包：
 
-![](https://p3-sign.toutiaoimg.com/tos-cn-i-qvj2lq49k0/0d278f053f3f4178be89924c9ff9cf3d~noop.image?_iz=58558&from=article.pc_detail&x-expires=1675792835&x-signature=8mxiBNb3Wc5R3KKYMYoiSWHsnpo%3D)JDK 中 java.util 包
+![JDK 中 java.util 包](https://s1.ax1x.com/2023/04/21/p9EcNTI.png)
 
 ## 4. 实体、值对象内部不引用基础设施组件
 
@@ -38,7 +38,7 @@ Domain 层根据限界上下文分包，把所有的领域知识放到限界上�
 
 领域对象不应该在自己内部手工调用基础设施以获取执行参数或者持久化自己，这样会导致领域模型的方法职责不再单一，这样做其实又变成了贫血模型。
 
-应当在Application层中调用基础设施或者持久化。
+应当在 Application 层中调用基础设施或者持久化。
 
 以下是反例：
 

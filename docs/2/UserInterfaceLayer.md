@@ -72,4 +72,4 @@ public class UserBirthdayQueryApiImpl implements UserBirthdayQueryApi{
 
 有时候接口的调用会涉及到鉴权，也建议将鉴权逻辑实现在用户接口层。
 
-原因是对于 Appication 层的同一个方法，可能在 Interfaces-Web 和 Interfaces-Provider 等多个模块都有调用，鉴权是跟调用场景密切相关的，一般只对外部调用做鉴权，鉴权逻辑放置在 Appication 层会对所有的调用来源进行鉴权。
+原因是对于 Application 层的同一个方法，可能在 Interfaces-Web 和 Interfaces-Provider 等多个模块都有调用，鉴权是跟调用场景密切相关的，一般只对外部调用做鉴权，鉴权逻辑放置在 Application 层会对所有的调用来源进行鉴权。

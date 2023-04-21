@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Thinking in DDD
   text: 悟道DDD
-  tagline: 代码之尽头，架构之巅峰
+  tagline: 代码尽头谁为峰，不学领域终是空
   actions:
     - theme: brand
       text: 开始学习 →
