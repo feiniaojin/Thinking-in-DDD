@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as a,a as r}from"./app.5efbbeb1.js";const o="/images/0/0.jpeg",u=JSON.parse('{"title":"作者介绍","description":"","frontmatter":{},"headers":[],"relativePath":"0/author.md"}'),n={name:"0/author.md"},_=r("",9),p=[_];function s(i,c,h,d,m,l){return a(),e("div",null,p)}const g=t(n,[["render",s]]);export{u as __pageData,g as default};
