@@ -92,7 +92,8 @@ export default {
         text: "DDD核心概念",
         collapsible: true,
         items: [
-          { text: "实体和值对象", link: "/3/EntityAndValueObject" },
+          { text: "实体", link: "/3/Entity" },
+          { text: "值对象", link: "/3/ValueObject" },
           { text: "聚合与聚合根", link: "/3/Aggregate" },
           { text: "领域服务", link: "/3/DomainService" },
         ],

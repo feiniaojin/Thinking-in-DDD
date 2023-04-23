@@ -10,7 +10,7 @@
 
 聚合根则是指这棵对象树的根（Root），聚合根必须是一个实体（Entity）。
 
-举个例子，下面Role类就是一个聚合，并且聚合根就是Role这个类，可以它遍历访问到聚合内所有的状态。
+举个例子，下面 Role 类就是一个聚合，并且聚合根就是 Role 这个类，可以它遍历访问到聚合内所有的状态。
 
 ```java
 
@@ -33,7 +33,7 @@ public class Role {
 
 聚合用来表示一致性的范围，聚合内的领域对象都必需接受一致性约束，聚合内的对象状态强一致，聚合之间最终一致。
 
-以Role为例，修改角色名称时，只是修改了roleName的值，并没有修改角色对应的资源，所以保存Role时，不能造成resourceIdList值的变化。
+以 Role 为例，修改角色名称时，只是修改了 roleName 的值，并没有修改角色对应的资源，所以保存 Role 时，不能造成 resourceIdList 值的变化。
 
 ```java
 public class RoleApplicationService {
@@ -51,7 +51,7 @@ public class RoleApplicationService {
 
 聚合根可以控制外部对聚合内对象的访问，外部对象只能引用聚合根，不能直接引用聚合内的对象，避免了外部对象绕开聚合根来修改内部对象的状态，确保任何状态变化都满足聚合的固定规则。
 
-以Role这个聚合为例，当需要给角色添加资源时，我们时直接通过聚合根Role提供的addResource方法进行操作，并不是返回了resourceIds，通过resourceIds进行添加。
+以 Role 这个聚合为例，当需要给角色添加资源时，我们时直接通过聚合根 Role 提供的 addResource 方法进行操作，并不是返回了 resourceIds，通过 resourceIds 进行添加。
 
 ```java
 /**
@@ -86,11 +86,11 @@ public class RoleApplicationService {
 }
 ```
 
-相应的，聚合根内部的对象也只能持有其他对象聚合根的引用，而且往往只会持有聚合根实体的ID。
+相应的，聚合根内部的对象也只能持有其他对象聚合根的引用，而且往往只会持有聚合根实体的 ID。
 
 外部对象如果需要获取聚合的内部状态，可以通过返回一个副本，避免了外部私自修改的风险。
 
-示例如下，**getResourceIds**方法返回了一个新的Set，调用方修改这个Set，不会影响到聚合内部状态
+示例如下，**getResourceIds**方法返回了一个新的 Set，调用方修改这个 Set，不会影响到聚合内部状态
 
 ```java
 public class Role {
@@ -110,11 +110,11 @@ public class Role {
 }
 ```
 
-只有聚合根才能直接通过数据库查询获取，因此只有聚合根拥有Repository。
+只有聚合根才能直接通过数据库查询获取，因此只有聚合根拥有 Repository。
 
-聚合根的Repository只有两个方法：load和save。
+聚合根的 Repository 只有两个方法：load 和 save。
 
-load：通过聚合根实体ID加载聚合根。
+load：通过聚合根实体 ID 加载聚合根。
 
 save：保存聚合根，注意要加事务。
 
@@ -159,7 +159,7 @@ public class Role0 {
 
 ```
 
-对于Role0这个聚合，里面包含了非常多的Resource实体，假设只是改变了roleName这个属性，在Role0持久化之前，所有对resources的修改都是失效的。
+对于 Role0 这个聚合，里面包含了非常多的 Resource 实体，假设只是改变了 roleName 这个属性，在 Role0 持久化之前，所有对 resources 的修改都是失效的。
 
 聚合过小无法封闭聚合内的业务规则，这个很好理解，就不举例了。
 
@@ -167,11 +167,11 @@ public class Role0 {
 
 - 第一次拆分
 
-首先根据聚合的定义，将一些外部聚合根移出聚合，通过聚合根的ID进行引用。
+首先根据聚合的定义，将一些外部聚合根移出聚合，通过聚合根的 ID 进行引用。
 
-如何判断一个实体是不是外部聚合呢？一般某个实体被多个聚合根引用，这个实体就可以提升为聚合根。例如上面的Resource，一般会被多个Role进行引用，那么就可以判断Resource可以提升为聚合根。
+如何判断一个实体是不是外部聚合呢？一般某个实体被多个聚合根引用，这个实体就可以提升为聚合根。例如上面的 Resource，一般会被多个 Role 进行引用，那么就可以判断 Resource 可以提升为聚合根。
 
-以下是第一次拆分后的Role1聚合根：
+以下是第一次拆分后的 Role1 聚合根：
 
 ```java
 public class Role1 {
@@ -183,7 +183,7 @@ public class Role1 {
 
 - 第二次拆分
 
-Role1中将Resource移出了聚合，但是留下了对ResourceId的引用。考虑到不仅需要根据Role查询到其关联的Resource，有时候还需要清楚某个Resource被哪些Role引用。如果按照Role1的设计，那么在Resource中，明显也需要持有对RoleId的引用。例如：
+Role1 中将 Resource 移出了聚合，但是留下了对 ResourceId 的引用。考虑到不仅需要根据 Role 查询到其关联的 Resource，有时候还需要清楚某个 Resource 被哪些 Role 引用。如果按照 Role1 的设计，那么在 Resource 中，明显也需要持有对 RoleId 的引用。例如：
 
 ```java
 public class Resource {
@@ -193,9 +193,9 @@ public class Resource {
 }
 ```
 
-这就造成了循环依赖的问题，假设Role中需要移除某个ResourceId，不仅需要在Role中操作，还需要到Resource中将RoleId移除掉，明显这是不合理的。
+这就造成了循环依赖的问题，假设 Role 中需要移除某个 ResourceId，不仅需要在 Role 中操作，还需要到 Resource 中将 RoleId 移除掉，明显这是不合理的。
 
-因此，我们开始第二次拆分。我们将resourceIds也移出Role聚合，并将Role与Resource的关联关系提升为一个聚合，将其命名为RoleResourceBinding。
+因此，我们开始第二次拆分。我们将 resourceIds 也移出 Role 聚合，并将 Role 与 Resource 的关联关系提升为一个聚合，将其命名为 RoleResourceBinding。
 
 ```java
 /**
@@ -217,10 +217,17 @@ public class RoleResourceBinding {
     private Date bindTime;
 }
 ```
+
 这两次拆分，我们总结出以下经验：
 
 重点关注容易被多个聚合根持有的公共实体，这些实体可能被提升为聚合根移出聚合。
 
-重点关注1:N的集合属性，这些属性有可能因为业务需要，需要提升为聚合根。
+重点关注 1:N 的集合属性，这些属性有可能因为业务需要，需要提升为聚合根。
+
+## 4. 聚合根的配套设施
+
+聚合的持久化、加载操作都是针对聚合根的，因此只有聚合根才拥有 Repository，其实现细节见[Repository](../4/Repository.md)
+
+复杂聚合的创建需要依赖 Factory，因此聚合根也拥有自己的 Factory，其实现细节见[Factory](../4/Factory.md)。
 
 <!--@include: ../footer.md-->

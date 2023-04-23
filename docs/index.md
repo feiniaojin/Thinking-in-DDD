@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Thinking in DDD
   text: 悟道DDD
-  tagline: 代码尽头谁为峰，不学领域终是空
+  tagline: 代码尽头谁为峰，不悟领域终成空
   actions:
     - theme: brand
       text: 开始学习 →
@@ -20,6 +20,6 @@ features:
     details: 真正基于充血模型去实践DDD，不会拿贫血模型糊弄读者
   - title: 互联网微服务场景DDD实战
     details: 代码级讲解如何在互联网高并发的微服务场景下落地DDD
-  - title: 注重实战
-    details: 注重真正的落地实战，不会为了讲解一个概念而提出新的概念
+  - title: 知识体系化
+    details: 将DDD相关的测试、生态、规范等归纳为完整的体系
 ---

@@ -89,6 +89,7 @@ public class Entity{
 public class ApplicationService{
 
   Repository repository;
+  
   InfrastructureRpc rpc;
 
   public void bizOperate(BizCommand command){

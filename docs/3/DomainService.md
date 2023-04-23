@@ -20,11 +20,11 @@
 
 创建领域服务时要经过慎重考虑，确认领域服务的操作不能归属于实体和值对象，否则会造成领域服务的滥用，形成新的贫血模型。
 
-领域服务通常根据其实现的功能进行进行命名，例如导出数据到Excel的领域服务可命名为DomainExportService。
+领域服务通常根据其实现的功能进行进行命名，例如导出数据到 Excel 的领域服务可命名为 DomainExportService。
 
 领域服务通常以多个领域对象作为入参，以值对象作为出参。
 
-以上面说的DomainExportService为例。
+以上面说的 DomainExportService 为例。
 
 ```java
 public interface DomainExportService{
@@ -32,11 +32,11 @@ public interface DomainExportService{
     /**
     * 多个领域对象作为入参，以值对象作为出参
      */
-    ExcelData export(List<DomainObject> list); 
+    ExcelData export(List<DomainObject> list);
 }
 ```
 
-而在Application Service中我们这样使用：
+而在 Application Service 中我们这样使用：
 
 ```java
 public class ApplicationService{
@@ -45,7 +45,7 @@ public class ApplicationService{
     private DomainExportService domainExportService;
 
     public Excel exportToExcel(Params params){
-        
+
         //TODO 加载领域模型
 
         //将领域模型转为输出
@@ -57,10 +57,34 @@ public class ApplicationService{
     }
 }
 ```
+
 ## 4. 领域服务与应用服务的区别
 
-领域服务（Domain Service）是领域知识的一部分，领域服务可以理解领域模型内部的逻辑。
+领域服务（Domain Service）是领域知识的一部分，领域服务可以理解领域模型内部的逻辑，领域服务必须在应用服务中执行，不会脱离应用服务单独存在。
 
-应用服务（Application Service）不是领域知识，应用服务也不应该去理解领域模型，不会做业务逻辑处理。
+应用服务（Application Service）不是领域知识，应用服务也不应该去理解领域模型，不会做业务逻辑处理，只是给领域模型、领域服务提供执行的场所。
+
+领域服务在应用服务中执行的示例伪代码：
+
+```java
+
+/**
+ * 应用服务
+ */
+public class ApplicationService{
+
+    /**
+     * 应用服务的方法
+     */
+    public void bizOperate(Params params){
+
+        //领域无法执行
+        domainService.doBizOperate();
+        //省略其他不愁
+    }
+
+}
+
+```
 
 <!--@include: ../footer.md-->
