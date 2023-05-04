@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as n,a as p}from"./app.5efbbeb1.js";const F=JSON.parse('{"title":"User Interface 层的实现细节","description":"","frontmatter":{},"headers":[],"relativePath":"2/UserInterfaceLayer.md"}'),l={name:"2/UserInterfaceLayer.md"},o=p("",15),e=[o];function t(c,r,y,i,D,A){return n(),a("div",null,e)}const d=s(l,[["render",t]]);export{F as __pageData,d as default};
