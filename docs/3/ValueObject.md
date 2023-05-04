@@ -2,7 +2,7 @@
 
 ## 1. 值对象的概念理解
 
-值对象（Value Object）：对领域知识进行建模之后，对某些概念进行描述的对象，称之为值对象，值对象没有唯一标识。
+值对象（Value Object）：对领域知识进行建模之后，对某些业务概念进行描述的对象，称之为值对象，值对象没有唯一标识。
 
 实体（Entity）和值对象（Value Object）是对事物进行领域建模后的两种表现形式，两者在技术实现上的区别在于有没有业务唯一标识。
 
@@ -10,7 +10,66 @@
 
 我们一般将值对象建模为不可变对象，一经创建，则值对象的属性不能修改，如果需要修改值对象的属性，必须重新生成值对象，使用新的值对象整体替换旧的值对象。有时候会直接把值对象的属性设置为 final，通过构造方法实例化对象之后，其属性就无法更改，这当然是非常好的实践。假如由于其他的原因不得不暴露了 set 方法，则可以通过形成开发团队内的研发规范，约定不通过 set 方法修改值对象的属性，而是通过无副作用函数产生新的值对象以满足修改值对象属性的需求。
 
-## 2. 订单、配送服务对地址信息的建模
+值对象是基于其属性值进行比较和相等性判断的，因此根据需要去实现去 equals 和 hashCode 方法。
+
+## 2. 值对象的实现
+
+我们可以使用普通的类来实现值对象，类中包含一些属性和一些方法，用于描述该值对象的行为和属性。例如，我们可以创建一个名为 Money 的类来表示货币：
+
+```java
+public class Money {
+    private final BigDecimal amount;
+    private final Currency currency;
+
+    public Money(BigDecimal amount, Currency currency) {
+        this.amount = amount;
+        this.currency = currency;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public Money add(Money other) {
+        if (!currency.equals(other.currency)) {
+            throw new IllegalArgumentException("Cannot add different currencies");
+        }
+        return new Money(amount.add(other.amount), currency);
+    }
+
+    public Money subtract(Money other) {
+        if (!currency.equals(other.currency)) {
+            throw new IllegalArgumentException("Cannot subtract different currencies");
+        }
+        return new Money(amount.subtract(other.amount), currency);
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Money)) {
+            return false;
+        }
+        Money other = (Money) obj;
+        return amount.equals(other.amount) && currency.equals(other.currency);
+    }
+
+    public int hashCode() {
+        return Objects.hash(amount, currency);
+    }
+
+    public String toString() {
+        return amount + " " + currency;
+    }
+}
+```
+
+## 3. 订单、配送服务对地址信息的建模
 
 在[实体](./Entity.md)一文中，我们将地址服务的地址建模为实体，我们再看一下订单、配送服务中对地址的建模。
 
@@ -22,7 +81,7 @@
 
 我们从数据库读取某个订单的地址信息，一般都是通过其订单号进行查询的，脱离了订单的订单收货地址，即使强行为其赋予了唯一标识，业务上也没有意义。
 
-## 3. 无副作用的值对象方法
+## 4. 无副作用的值对象方法
 
 值对象的属性一般要求不可变，值对象对外提供的方法，我们要求实现为无副作用函数。
 
@@ -49,7 +108,7 @@ public class CustomInt{
 
 plus 这个方法需要返回 CustomInt 类型的结果，我们不是通过修改旧的值对象，而是通过创建新的值对象进行返回。
 
-## 4. 值对象的创建
+## 5. 值对象的创建
 
 值对象创建完成时所有的属性都必须被正确初始化，创建过程结束之后不允许赋值或者修改，所有的属性修改需求都必须通过创建新的值对象来满足。
 
@@ -132,13 +191,13 @@ CustomValue customValue = new Builder().withProp1("prop1")
                 .withProp3("prop3").build();
 ```
 
-## 5. Domain Primitive(DP)
+## 6. Domain Primitive(DP)
 
 Domain Primitive 即 DP，可以理解为领域内的基本类型。
 
 我们把某些隐层的概念显式抽取出来建模成值对象，并提供自校验的逻辑，则形成了 DP。
 
-举个大家耳熟能详的例子：
+以上文中的 Money 类为例，在没有抽象出该类之前，amount 和 currency 可能直接是某个类的属性：
 
 ```java
 

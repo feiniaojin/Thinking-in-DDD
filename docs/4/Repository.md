@@ -1,6 +1,6 @@
 # Repository
 
-## 1. Repository 职责限定
+## 1. Repository 的职责
 
 只有聚合根才有配套的 Repository。
 
@@ -16,27 +16,30 @@ Repository 的`load`方法中，查询数据库获得数据对象，再将数据
 
 - 数据库事务控制
 
-Repository的实现方案有两种：
+Repository 的实现方案有两种：
 
 - 表级
 
 - 行级
+
 ## 2. 初步领域建模
 
-本文将以一个 CMS 应用为例，讲解 Repository 的实现细节，展示领域模型与数据模型阻抗不匹配的问题以及如何领域模型与数据模型的映射。
+本文将以一个 CMS 应用为例，讲解 Repository 的实现细节，展示领域模型与数据模型阻抗不匹配的问题以及如何实现领域模型与数据模型的映射。
 
-CMS 应用的核心子域是内容子域，内容子域领域模型的聚合根我们称之为 Article（文章）。
+CMS 应用的核心子域是内容子域，我们将内容对应的实体称之为 Article。
 
 首先，分析 Article 的行为。
 
 - 类似公众号，一般会先创建一个草稿，所以 Article 有一个创建草稿的能力；
+
 - 创建好的公众号文章，可以修改标题或者内容；
-- 可以把草稿箱的文章发布到公众号，读者这时候可以进行阅读。
 
-其次，分析 Article 的属性。文章需要有 title(标题)、content(正文)两个基本的字段；Article 作为一个实体，需要有自己的唯一标识，我们称之为
-articleId；Article 涉及发布或者未发布，所以还需要有记录发布状态的的字段 publishState。
+- 可以把草稿箱的文章发布到公众号，读者可以阅读已发布状态的 Article。
 
-于是我们得到了一个实体（也是聚合根） Article，如下面代码，方法的入参出参暂时先不用过多关注。
+其次，分析 Article 的属性。文章需要有 title(标题)、content(正文)两个基本的字段；Article 作为一个实体，需要有自己的唯一标识，称之为
+ArticleId；Article 涉及发布或者未发布，所以还需要有记录发布状态的的字段，称之为 publishState。
+
+于是我们得到了一个实体 Article，并且 Article 是一个聚合根，如下面代码，方法的入参出参暂时先不用过多关注。
 
 ```java
 public class Article {
@@ -102,11 +105,10 @@ public class ArticleId implements EntityId<String> {
 }
 ```
 
-领域驱动设计不推荐我们在 Application 层使用 set 方法直接赋值，但是有时候我们使用的框架需要进行 set/get，所以我们提供了
-set 方法，同时我们要注意在关键属性的 set 方法中也进行业务校验，避免盲区；另外，要在团队内部形成开发指南，在开发者的层面达成共识，避免在
+领域驱动设计不推荐在 Application 层使用 set 方法直接赋值，但是有时候我们使用的框架需要进行 set/get，所以我们提供了 set 方法，同时我们要注意在关键属性的 set 方法中也需要进行业务校验；另外，要在团队内部形成开发指南，在开发者的层面达成共识，避免在
 Application 层使用没有业务含义的 set 方法。
 
-思考 title 和 content 这两个字段，自身可能包含了非空、长度限制等逻辑，并且其生命周期与聚合根的生命周期相同，也不具备自己的唯一标识，所以可以将其建模为值对象。假设 title 字段不允许长度超过 64，可以得到以下的值对象。
+接下来， title 和 content 这两个字段，自身可能包含了非空、长度限制等逻辑，并且其生命周期与聚合根的生命周期相同，也不具备自己的唯一标识，所以可以将其建模为值对象。假设 title 字段不允许长度超过 64，可以得到以下的值对象。
 
 ```java
 //标题字段建模为值对象（Value Object）
@@ -135,7 +137,7 @@ public class ArticleTitle implements ValueObject<String> {
         this.value = value;
     }
 
-    //未来通过规约模式做进一步优化
+    //未来通过抽取业务规则做进一步优化
     private void check(String value) {
         Objects.requireNonNull(value, "title不能为空");
         if ("".equals(value) || value.length() > 64) {
@@ -159,6 +161,7 @@ public class ArticleContent implements ValueObject<String> {
 
     public void setValue(String value) {
         if (this.value != null) {
+            //有值的情况下不允许修改
             throw new UnsupportedOperationException();
         }
         this.check(value);
@@ -211,8 +214,8 @@ public class Article {
 
 领域模型的建模是不关心持久化的，只关心聚合根内领域知识是否完整，但是我们在基础设施层实现 Repository 时，就需要考虑如何建模数据库表结构了。
 
-考虑 ArticleContent（文章正文）这个值对象，它的值一般是富文本，文本比较长而且长度不定。这类文本在数据库层面，我们一般用
-text，Blob 之类的类型去存储，为了考虑性能还要单独一张表，通过 articleId 提供查找。
+考虑 ArticleContent（文章正文）这个值对象，它的值一般是富文本，文本比较长而且长度不定。这类文本有可能使用对象存储，在此处我们进行简化直接用
+text，Blob 之类的类型在数据库中进行存储，一般情况下为了考虑性能还要单独一张表，通过 articleId 提供查找。
 
 所以，聚合根 Article 在数据库层面要存成两张表。
 
@@ -405,7 +408,6 @@ public class ArticleApplicationService {
         entity.modifyContent(ArticleContent.newInstanceFrom(entity.getContent(),
                 cmd.getContent()));
         domainRepository.save(entity);
-        domainEventPublisher.publish(entity.domainEvents());
     }
 
 }
@@ -418,9 +420,7 @@ public class ArticleEntity extends AbstractDomainMask implements Entity {
 
     //修改内容
     public void modifyContent(ArticleContent articleContent) {
-        this.setContent(articleContent);
-        events.add(new ModifyContentEvent(this.getArticleId().getValue(),
-                articleContent.getValue()));
+        this.content = articleContent;
     }
 
     //……其他代码省略

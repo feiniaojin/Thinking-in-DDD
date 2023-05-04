@@ -130,7 +130,7 @@ export default {
         text: "CQRS与事件溯源",
         collapsible: true,
         items: [
-          { text: "CQRS", link: "/7/7.1" },
+          { text: "CQRS", link: "/7/CQRS" },
           { text: "事件溯源", link: "/7/7.2" },
         ],
       },
