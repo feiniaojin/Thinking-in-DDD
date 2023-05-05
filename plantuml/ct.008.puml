@@ -10,14 +10,13 @@ LAYOUT_LEFT_RIGHT()
 
 System_Boundary(SB_SYS1, "限界上下文1"){
 
-    Container(C_APP1, "DDD应用1","DDD架构应用"){
+    Container_Boundary(C_APP1, "DDD应用1","DDD架构应用"){
         Component(C_UI, "User Interface","用户接口层", "接受业务处理请求")
         Component(C_Application, "Application","应用层", "协调基础设施与领域模型完成业务逻辑")
         Component(C_Domain, "Domain","领域层", "完成领域逻辑")
         Component(C_InfrastructureDb, "InfrastructureDb","数据库基础设施层", "提供基础设施支持")
     }
     ContainerDb(DB, "Database", "数据库")
-
     Container(C_CDC, "CDC组件","事务日志拖尾推到消息中间件")
 }
 

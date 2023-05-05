@@ -6,26 +6,23 @@
 
 title "Service抽取业务逻辑之后的架构图"
 
-Person(P_User, "用户","用户")
-
-System_Boundary(SB_APP, "系统边界"){
-    Container(C_Controller, "Controller", "控制层","接受请求")
-    Container(C_Service, "Service","服务层", "协调模型层和访问层完成业务操作")
-    Container(C_Model, "Model","模型层", "业务逻辑处理")
-    Container(C_Repository, "Repository","领域仓储层", "封装数据模型ORM逻辑，向上层返回领域模型"){
-        Component(C_Dao, "Dao","数据访问层", "数据访问层，负责ORM")
-    }
-
+Container_Boundary(CB_APP, "经典三层架构应用"){
+    Component(C_Controller, "Controller","控制层", "接受请求")
+    Component(C_Service, "Service", "服务层","协调各个组件完成用例")
+    Component(C_Repostiry, "Repository", "仓储层","封装数据模型ORM的逻辑,保存或加载领域模型")
+    Component(C_Model, "Model","业务模型", "业务逻辑处理")
 }
 
-Rel(P_User, C_Controller, "1.用户发起请求")
-Rel(C_Controller, C_Service, "2.调用Service完成业务操作")
-Rel_L(C_Service, C_Model, "3.业务逻辑处理")
-Rel(C_Service, C_Repository, "4.加载、保存领域模型")
+ContainerDb(CDB, "Database", "数据库")
 
-LAYOUT_LANDSCAPE()
+Rel(C_Controller, C_Service, "1.调用Service完成业务操作")
+Rel_L(C_Service, C_Model, "2.业务逻辑处理")
+Rel(C_Service, C_Repostiry, "3.数据持久化")
 
-SHOW_FLOATING_LEGEND()
-Lay_Distance(LEGEND(), P_User, -1)
+Rel(C_Repostiry, CDB, "读写","JDBC")
+
+left to right direction
+
+SHOW_LEGEND()
 
 @enduml

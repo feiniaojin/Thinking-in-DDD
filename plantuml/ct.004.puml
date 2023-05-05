@@ -6,33 +6,30 @@
 
 title "三层架构演化第四步"
 
-Person(P_User, "用户","用户")
-
-System_Boundary(SB_APP, "系统边界"){
-    Container(C_ui, "ui", "user interface","UI层"){
-        Component(C_ui_web, "ui-web", "user interface web","接受web请求")
-        Component(C_ui_rpc_provider, "ui-rpc-provider", "user interface RPC provider","RPC服务提供层")
-    }
-
-    Container(C_application, "Application","应用服务层", "协调模型层和基础设施层完成业务操作")
-    Container(C_domain, "Domain","领域模型层", "领域模型提供业务逻辑处理能力")
-    Container(C_infrastructure, "Infrastructure","基础设施层", "基础设施层，向上提供各种支持"){
-        Component(C_infrastructure_repository, "infrastructure_repository","基础设施仓储层", "封装数据模型ORM逻辑，向上层返回领域模型")
-        Component(C_infrastructure_cache, "infrastructure_cache","基础设施缓存层", "为应用服务提供缓存服务")
-
-    }
+Container_Boundary(C_ui, "UI", "user interface","用户接口层"){
+    Component(C_ui_web, "ui-web", "WEB","HTTP/REST")
+    Component(C_ui_rpc_provider, "ui-rpc-provider", "RPC Sevice","RPC服务提供层")
+    Component(C_ui_worker, "ui-worker", "分布式任务","定时任务")
 }
-Rel(P_User, C_ui_web, "1.用户发起请求")
-Rel(P_User, C_ui_rpc_provider, "发起RPC调用")
-Rel(C_ui_rpc_provider, C_application, "发起RPC调用")
 
-Rel(C_ui_web, C_application, "2.调用应用服务")
-Rel_L(C_application, C_domain, "3.调用领域模型完成业务逻辑")
+Component(C_application, "Application","应用服务层", "协调模型层和基础设施层完成业务操作")
+Component(C_domain, "Domain","领域模型层", "领域模型提供业务逻辑处理能力")
+Container_Boundary(C_infrastructure, "Infrastructure","基础设施层", "基础设施层，向上提供各种支持"){
+    Component(C_infrastructure_repository, "infrastructure-repository","基础设施仓储层", "封装数据模型ORM逻辑，向上层返回领域模型")
+    Component(C_infrastructure_cache, "infrastructure-cache","基础设施缓存层", "为应用服务提供缓存服务")
+    Component(C_infrastructure_gateway, "infrastructure-gateway","基础设施外部调用网关层", "外部调用的网关层，充当防腐层")
+}
+
+Rel(C_ui_web, C_application, "1.调用应用服务")
+Rel(C_ui_rpc_provider, C_application, "1.调用应用服务")
+Rel(C_ui_worker, C_application, "1.调用应用服务")
+
+Rel_R(C_application, C_domain, "2.调用领域模型完成业务逻辑")
+
 Rel(C_application, C_infrastructure_repository, "3.调用基础设施层的仓储服务完成领域模型加载、保存")
-Rel(C_application, C_infrastructure_cache, "缓存操作")
+Rel(C_application, C_infrastructure_cache, "3.调用基础设施层完成缓存操作")
+Rel(C_application, C_infrastructure_gateway, "3.调用外部服务")
 
-LAYOUT_LANDSCAPE()
+left to right direction
 
-SHOW_FLOATING_LEGEND()
-Lay_Distance(LEGEND(), P_User, -1)
 @enduml

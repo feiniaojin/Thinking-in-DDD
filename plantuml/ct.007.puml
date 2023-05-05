@@ -6,11 +6,9 @@
 
 title "直接发布+轮询发布消息补偿架构图"
 
-LAYOUT_LEFT_RIGHT()
-
 System_Boundary(SB_SYS1, "限界上下文1"){
 
-    Container(C_APP1, "DDD应用1","DDD架构应用"){
+    Container_Boundary(C_APP1, "DDD应用1","DDD架构应用"){
         Component(C_UI, "User Interface","用户接口层", "接受业务处理请求")
         Component(C_Application, "Application","应用层", "协调基础设施与领域模型完成业务逻辑")
         Component(C_Domain, "Domain","领域层", "完成领域逻辑")
@@ -42,5 +40,8 @@ Rel_L(C_Worker1, MQ, "b2.补偿发送领域事件")
 Rel_L(C_Worker1, DB, "b3.更新领域事件状态为发送成功")
 
 Rel_D(C_APP2, MQ, "c1.订阅消费领域事件")
+
+left to right direction
+
 
 @enduml

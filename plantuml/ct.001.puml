@@ -4,20 +4,19 @@
 !include https://gitee.com/igingo/C4-PlantUML/raw/master/C4_Container.puml
 !include https://gitee.com/igingo/C4-PlantUML/raw/master/C4_Component.puml
 
-title 三层架构示意图
+title 经典三层架构示意图
 
-Person(P_User, "用户","用户")
-
-System_Boundary(SB_APP, "系统边界"){
-    Container(C_Controller, "Controller", "控制层","接受请求")
-    Container(C_Service, "Service","服务层", "业务逻辑处理")
-    Container(C_Dao, "Dao","数据访问层", "数据持久化")
+Container_Boundary(CB_APP, "经典三层架构应用"){
+    Component(C_Controller, "Controller","HTTP", "控制层")
+    Component(C_Service, "Service", "贫血模型","服务层")
+    Component(C_Dao, "Dao", "ORM","数据访问层")
 }
 
-Rel(P_User, C_Controller, "用户发起请求")
+ContainerDb(CDB, "Database", "数据库")
+
 Rel(C_Controller, C_Service, "处理业务逻辑")
 Rel(C_Service, C_Dao, "数据持久化")
-
+Rel(C_Dao, CDB, "读写","JDBC")
 left to right direction
 
 SHOW_LEGEND()
