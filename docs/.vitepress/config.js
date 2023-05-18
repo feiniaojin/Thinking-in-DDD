@@ -41,7 +41,7 @@ export default {
         ],
       },
       {
-        text: "0. 前言",
+        text: "前言",
         collapsible: true,
         items: [
           {
@@ -149,8 +149,8 @@ export default {
           { text: "战略设计", link: "StrategicDesign/StrategicDesign" },
           { text: "限界上下文", link: "StrategicDesign/BoundContext" },
           { text: "上下文映射", link: "StrategicDesign/ContextMap" },
-          { text: "子域", link: "/3/3.3" },
-          { text: "防腐层", link: "/5/5.3" }
+          { text: "子域", link: "/StrategicDesign/SubDomain" },
+          { text: "防腐层", link: "/StrategicDesign/5.3" }
         ],
       },
     ],
