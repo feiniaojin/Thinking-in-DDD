@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a,a as _}from"./app.d9f712a7.js";const m=JSON.parse('{"title":"整体理解领域驱动设计","description":"","frontmatter":{},"headers":[],"relativePath":"1/1.1.md"}'),i={name:"1/1.1.md"},r=_("",6),s=[r];function o(c,n,d,l,p,D){return a(),t("div",null,s)}const f=e(i,[["render",o]]);export{m as __pageData,f as default};
