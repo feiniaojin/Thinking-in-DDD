@@ -7,9 +7,9 @@
 title 经典三层架构示意图
 
 Container_Boundary(CB_APP, "经典三层架构应用"){
-    Component(C_Controller, "Controller","HTTP", "控制层")
-    Component(C_Service, "Service", "贫血模型","服务层")
-    Component(C_Dao, "Dao", "ORM","数据访问层")
+    Component(C_Controller, "Controller","控制层", "接受用户请求")
+    Component(C_Service, "Service", "服务层","处理业务逻辑")
+    Component(C_Dao, "Dao", "数据访问层","封装数据库操作")
 }
 
 ContainerDb(CDB, "Database", "数据库")
