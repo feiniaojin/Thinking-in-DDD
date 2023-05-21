@@ -111,8 +111,8 @@ export default {
         text: "复杂业务逻辑实现",
         collapsible: true,
         items: [
-          { text: "GoF设计模式", link: "/5/5.1" },
-          { text: "无副作用函数", link: "/5/5.4" }
+          { text: "GoF设计模式", link: "/5/GoFDesignPattern" },
+          { text: "无副作用函数", link: "/5/Side-Effect-FreeFunction" }
         ],
       },
       {
@@ -131,7 +131,7 @@ export default {
         collapsible: true,
         items: [
           { text: "CQRS", link: "/7/CQRS" },
-          { text: "事件溯源", link: "/7/7.2" },
+          { text: "事件溯源", link: "/7/EventSourcing" },
         ],
       },
       {
@@ -150,7 +150,7 @@ export default {
           { text: "限界上下文", link: "StrategicDesign/BoundContext" },
           { text: "上下文映射", link: "StrategicDesign/ContextMap" },
           { text: "子域", link: "/StrategicDesign/SubDomain" },
-          { text: "防腐层", link: "/StrategicDesign/5.3" }
+          { text: "防腐层", link: "/StrategicDesign/ACL" }
         ],
       },
     ],
