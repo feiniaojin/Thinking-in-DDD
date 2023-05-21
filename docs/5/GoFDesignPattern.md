@@ -1,7 +1,7 @@
 # 设计模式（GoF Design Pattern）
 
 我们在创建领域对象时使用了工厂模式（部分还使用了建造者模式），其他的设计模式也完全可以应用在 DDD
-中。本章直接部分设计模式进行举例，不会讲解设计模式的基本概念，这方面知识请读者自行预习。
+中。本章选择部分设计模式直接举例，不会讲解设计模式的基本概念，这方面知识请读者自行预习。
 
 ## 1. 责任链模式
 
@@ -221,15 +221,15 @@ public class ArticleModifyExample1 {
  */
 public class PublishService {
 
-    
+
     /**
      * 领域服务
      */
     public void publish(Article article) {
-        
+
         //创建引导类
         BootStrap bootStrap = new BootStrap();
-        
+
         //拼装并执行
         bootStrap.inboundParameter(article)//入参
                 .outboundFactory(new ResultFactory())//出参工厂
