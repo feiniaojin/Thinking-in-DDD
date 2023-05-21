@@ -146,11 +146,12 @@ export default {
         text: "战略设计",
         collapsible: true,
         items: [
-          { text: "战略设计", link: "StrategicDesign/StrategicDesign" },
+          { text: "战略设计概述", link: "StrategicDesign/StrategicDesign" },
+          { text: "通用语言", link: "/StrategicDesign/UbiquitousLanguage" },
           { text: "限界上下文", link: "StrategicDesign/BoundContext" },
           { text: "上下文映射", link: "StrategicDesign/ContextMap" },
           { text: "子域", link: "/StrategicDesign/SubDomain" },
-          { text: "防腐层", link: "/StrategicDesign/ACL" }
+          { text: "防腐层", link: "/StrategicDesign/ACL" },
         ],
       },
       {
