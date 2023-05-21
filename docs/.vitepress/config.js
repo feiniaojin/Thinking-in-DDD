@@ -153,6 +153,23 @@ export default {
           { text: "防腐层", link: "/StrategicDesign/ACL" }
         ],
       },
+      {
+        text: "生态建设",
+        collapsible: true,
+        items: [
+          { text: "Maven Archetype", link: "10/MavenArchetype" },
+          { text: "代码生成器", link: "10/CodeGenerator" },
+        ],
+      },
+      {
+        text: "代码质量",
+        collapsible: true,
+        items: [
+          { text: "测试驱动开发", link: "9/TDD" },
+          { text: "静态分析", link: "9/StaticAnalysis" },
+          { text: "编码指南", link: "9/CodingGuidelines" },
+        ],
+      },
     ],
   },
 };
