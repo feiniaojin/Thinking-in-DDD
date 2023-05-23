@@ -7,7 +7,7 @@ Maven Archetype是一个Maven插件，它允许开发人员通过指定一组参
 
 我们在介绍DDD应用架构时，对项目的结构进行了介绍。我们将项目分为多个Maven Module，如果每个项目都手工创建一次，是比较繁琐的工作，也不利项目结构的统一。
 
-![DDD完整包结构](/images/2/ct.005.jpg)
+![DDD完整包结构](/images/2/ct.005.png)
 
 我们使用Maven Archetype创建DDD项目初始化的脚手架。
 
