@@ -6,19 +6,15 @@
 
 title 经典三层架构示意图
 
-Container_Boundary(CB_APP, "经典三层架构应用"){
-    Component(C_Controller, "Controller","控制层", "接受用户请求")
-    Component(C_Service, "Service", "服务层","处理业务逻辑")
-    Component(C_Dao, "Dao", "数据访问层","封装数据库操作")
-}
-
-ContainerDb(CDB, "Database", "数据库")
+Component(C_Controller, "Controller","控制层", "接受用户请求")
+Component(C_Service, "Service", "服务层","处理业务逻辑")
+Component(C_Dao, "Dao", "数据访问层","封装数据库操作")
+Component(C_Model, "Model", "模型层","贫血模型，不包含业务逻辑")
 
 Rel(C_Controller, C_Service, "处理业务逻辑")
 Rel(C_Service, C_Dao, "数据持久化")
-Rel(C_Dao, CDB, "读写","JDBC")
-left to right direction
+Rel(C_Dao, C_Model, "数据持久化")
 
-SHOW_LEGEND()
+left to right direction
 
 @enduml

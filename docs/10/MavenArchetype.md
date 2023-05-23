@@ -15,7 +15,7 @@ Maven Archetype是一个Maven插件，它允许开发人员通过指定一组参
 
 ### 2.1 项目介绍
 
-ddd-archetype是一个Maven Archetype的原型工程，我们将其克隆到本地之后，可以安装为Maven Archetype，并且支持用户自己任意增加或者删减Maven Module。
+ddd-archetype是一个Maven Archetype的原型工程，我们将其克隆到本地之后，可以安装为Maven Archetype，帮助我们快速创建DDD项目脚手架。
 
 项目链接：https://github.com/feiniaojin/ddd-archetype
 

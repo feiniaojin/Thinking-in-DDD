@@ -20,7 +20,39 @@ Repository 的实现方案有两种：
 
 - 表级
 
+Repository的方法在进行查询或者更新时会操作多个领域模型，则该Repository是表级的。例如：
+
+```java
+public class Repository {
+    public List<Model> queryForList() {
+        //省略业务逻辑
+    }
+
+    public void batchSave(List<Model> modelList) {
+        //省略业务逻辑
+    }
+}
+```
+queryForList方法返回多个Model实例、batchSave同时保存多个Model实例，因此这个Repository是表级的。
+
 - 行级
+
+Repository的方法在进行查询或者更新时只会操作一个领域模型，则该Repository是行级的。例如：
+
+```java
+public class Repository {
+    public Model load(EntityId entityId) {
+        //省略业务逻辑
+    }
+
+    public void save(Model model) {
+        //省略业务逻辑
+    }
+}
+```
+load、save方法都只操作一个领域模型，因此是行级的。
+
+>在DDD中，我们要求Repository实现为行级的，并且只有load和save两个方法。其他类似queryForList，应通过CQRS将其分离出去；又由于一次事务只更新一个聚合，因此不会提供类似batchSave这种批量更新的方法。
 
 ## 2. 初步领域建模
 

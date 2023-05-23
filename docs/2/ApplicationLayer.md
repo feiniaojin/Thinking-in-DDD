@@ -20,7 +20,7 @@ public class ApplicationService{
 
           //factory了解创建的全部知识，例如factory才知道唯一标识ID是如何生成的
           Entity entity=factory.newInstance(new Value1(command.getProperty1()),
-                              new Value2(command.getProperty2());
+                              new Value2(command.getProperty2()));
           //初始化，并生成初始化事件
           entity.init();
           //保存实体

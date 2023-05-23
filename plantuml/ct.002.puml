@@ -6,23 +6,15 @@
 
 title "Service抽取业务逻辑之后的架构图"
 
-Container_Boundary(CB_APP, "经典三层架构应用"){
-    Component(C_Controller, "Controller","HTTP", "控制层")
-    Component(C_Service, "Service", "协调","服务层")
-    Component(C_Dao, "Dao", "ORM","数据访问层")
-    Component(C_Model, "Model","业务模型", "业务逻辑处理")
-}
-
-ContainerDb(CDB, "Database", "数据库")
+Component(C_Controller, "Controller","HTTP", "控制层")
+Component(C_Service, "Service", "协调","服务层")
+Component(C_Dao, "Dao", "ORM","数据访问层")
+Component(C_Model, "Model","业务模型", "业务逻辑处理")
 
 Rel(C_Controller, C_Service, "1.调用Service完成业务操作")
-Rel_L(C_Service, C_Model, "2.业务逻辑处理")
+Rel_R(C_Service, C_Model, "2.业务逻辑处理")
 Rel(C_Service, C_Dao, "3.数据持久化")
 
-Rel(C_Dao, CDB, "读写","JDBC")
-
 left to right direction
-
-SHOW_LEGEND()
 
 @enduml
