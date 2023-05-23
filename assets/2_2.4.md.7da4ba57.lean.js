@@ -1,0 +1,1 @@
+import{_ as t}from"./chunks/ct.005.2b4875c3.js";import{_ as e,c as a,o as _,a as i}from"./app.0703c3d1.js";const u=JSON.parse('{"title":"应用架构各层实现细节","description":"","frontmatter":{},"headers":[],"relativePath":"2/2.4.md"}'),r={name:"2/2.4.md"},p=i("",10),s=[p];function o(c,D,n,l,d,m){return _(),a("div",null,s)}const T=e(r,[["render",o]]);export{u as __pageData,T as default};
