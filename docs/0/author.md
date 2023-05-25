@@ -10,8 +10,4 @@ github: https://github.com/feiniaojin
 
 微信: qyj_000100
 
-本书已创建微信讨论群，读者朋友可以通过加我微信进群。
-
-欢迎读者提出宝贵意见。
-
 ![照骗](/images/0/0.jpeg)
