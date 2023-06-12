@@ -1,1 +1,0 @@
-import{_ as D,c as l,o as i,a as p}from"./app.0703c3d1.js";const h=JSON.parse('{"title":"全文导读","description":"","frontmatter":{},"headers":[],"relativePath":"0/0.3.md"}'),e={name:"0/0.3.md"},t=p("",35),r=[t];function a(o,u,s,n,_,c){return i(),l("div",null,r)}const S=D(e,[["render",a]]);export{h as __pageData,S as default};

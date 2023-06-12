@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a,a as r}from"./app.268a31c3.js";const p="/images/2/ct.009.jpg",T=JSON.parse('{"title":"领域事件 3——领域事件的订阅","description":"","frontmatter":{},"headers":[],"relativePath":"6/DomainEvent4.md"}'),i={name:"6/DomainEvent4.md"},o=r("",12),s=[o];function n(_,c,d,l,m,h){return a(),t("div",null,s)}const v=e(i,[["render",n]]);export{T as __pageData,v as default};
