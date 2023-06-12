@@ -166,7 +166,7 @@ export default {
         text: "代码质量",
         collapsible: true,
         items: [
-          { text: "测试驱动开发", link: "9/TDD" },
+          { text: "测试驱动开发(TDD)", link: "9/TDD" },
           { text: "静态分析", link: "9/StaticAnalysis" },
           { text: "编码指南", link: "9/CodingGuidelines" },
         ],
