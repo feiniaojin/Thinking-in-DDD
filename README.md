@@ -20,7 +20,7 @@
 
 本项目已部署到 Github Pages，并使用 CDN 进行加速，请点击[在线阅读](http://ddd.feiniaojin.com/)。
 
-![](https://s3.cn-north-1.jdcloud-oss.com/shendengbucket1/2023-05-25-11-28nVq0QzwtN28CZ5rw.png)
+![](https://s1.ax1x.com/2023/06/27/pCa5cm6.png)
 
 ### 本地阅读
 
