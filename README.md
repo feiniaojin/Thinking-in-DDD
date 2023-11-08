@@ -74,4 +74,4 @@ http://localhost:5173/Thinking-in-DDD/
 
 # DDD学习交流群
 欢迎加入DDD交流群。微信扫以下二维码添加作者微信，标注“DDD”，好友申请通过后拉您进群。
-<div><img src="https://z1.ax1x.com/2023/11/08/pi1rmB6.jpg" width="50%" height="50%" alt="pi1rmB6.jpg" border="0"><div>
+<div><img src="https://z1.ax1x.com/2023/11/08/pi1rmB6.jpg" width="50%" height="50%" alt="pi1rmB6.jpg" border="0"/></div>
