@@ -8,11 +8,11 @@
 
 特点：
 
-- 与开发语言无关、与框架无关，领域驱动设计是与技术无关的，因此本书中没有选择某些特殊的语言、特殊的框架作为案例，理论上看完本书可以使用任何语言实践 DDD。
+- 与开发语言无关、与框架无关，领域驱动设计是与技术无关的，因此本书中没有选择某些特殊的语言、特殊的框架作为案例，理论上看完本书可以使用任何语言实践DDD。
 
 - 作者始终坚信大道至简，好的东西应该能把事情简化，而不是把事情搞得更复杂，更不是为了讲解一个概念去提出一个新的概念，因此用最简单的语言去讲解领域驱动设计，力求每一位读者都能有所收获。
 
-- 所有架构图均采用 C4 架构模型，在 VS Code 中使用 PlantUML 进行绘制，项目内提供每一张架构图的生成源码。
+- 本书大部分架构图均采用 C4 架构模型，阅读本书的同时也将掌握C4架构模型。
 
 ## 阅读方法
 
@@ -46,6 +46,26 @@ $ yarn docs:dev
 http://localhost:5173/Thinking-in-DDD/
 ```
 
+## 案例代码
+
+- DDD基础类库
+```text
+https://github.com/feiniaojin/ddd
+```
+- 视频直播项目
+```text
+https://github.com/feiniaojin/ddd-live
+```
+[![pi1DckD.png](https://z1.ax1x.com/2023/11/08/pi1DckD.png)](https://imgse.com/i/pi1DckD)
+- AIGC项目
+```text
+https://github.com/feiniaojin/ddd-aigc
+```
+[![pinWL0f.png](https://z1.ax1x.com/2023/10/31/pinWL0f.png)](https://imgse.com/i/pinWL0f)
+- CMS项目
+```text
+https://github.com/feiniaojin/ddd-example-cms
+```
 ## 版权声明
 
 - 本作品代码部分采用 [Apache 2.0 协议](https://www.apache.org/licenses/LICENSE-2.0)进行许可。
@@ -56,7 +76,10 @@ http://localhost:5173/Thinking-in-DDD/
 
 **保留许可证**：在原有代码和衍生代码中，保留 Apache 2.0 协议文件。
 
-- 本作品文档部分采用[署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。 
+-
+
+本作品文档部分采用[署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+进行许可。
 
 遵循许可的前提下，你可以：
 
@@ -70,8 +93,10 @@ http://localhost:5173/Thinking-in-DDD/
 
 **非商业性使用**：不得用于商业出版或其他任何带有商业性质的行为。如需商业使用，请联系作者。
 
-**相同方式共享的条件**：在本文档基础上演绎、修改的作品，应当继续以署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0)许可协议进行许可。
+**相同方式共享的条件**：在本文档基础上演绎、修改的作品，应当继续以署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0)
+许可协议进行许可。
 
 # DDD学习交流群
+
 欢迎加入DDD交流群。微信扫以下二维码添加作者微信，标注“DDD”，好友申请通过后拉您进群。
 <div><img src="https://z1.ax1x.com/2023/11/08/pi1rmB6.jpg" width="50%" height="50%" alt="pi1rmB6.jpg" border="0"/></div>
