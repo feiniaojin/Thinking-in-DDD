@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 开始学习 →
-      link: /0/0.0
+      link: /0.0.md
     - theme: alt
       text: View on GitHub
       link: https://github.com/feiniaojin/Thinking-in-DDD
