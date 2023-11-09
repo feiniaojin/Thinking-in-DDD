@@ -1,6 +1,6 @@
 export default {
-  title: "Thinking in DDD",
-  description: "悟道DDD",
+  title: "Thinking in Domain Driven Design",
+  description: "悟道领域驱动设计",
   base: "/",
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }]
@@ -15,7 +15,7 @@ export default {
     },
     nav: [
       {
-        text: "悟道DDD",
+        text: "悟道领域驱动设计",
         link: "/0/0.0.md",
         activeMatch: "/",
       }
