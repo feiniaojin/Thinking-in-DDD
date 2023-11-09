@@ -1,1 +1,0 @@
-import{_ as t,o as e,c as a,a as r}from"./app.e1ec319e.js";const o="/images/0/0.jpeg",u=JSON.parse('{"title":"作者介绍","description":"","frontmatter":{},"headers":[],"relativePath":"author.md"}'),n={name:"author.md"},_=r("",8),s=[_];function i(p,c,h,d,m,l){return e(),a("div",null,s)}const g=t(n,[["render",i]]);export{u as __pageData,g as default};
