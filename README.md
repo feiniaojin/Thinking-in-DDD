@@ -1,6 +1,6 @@
 <div align=center><img src="https://s1.ax1x.com/2023/02/27/pp9zsgg.png"/></div>
 
-# Thinking in Domain Driven Design
+# 悟道领域驱动设计（Thinking in Domain Driven Design）
 
 ## 项目介绍
 
