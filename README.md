@@ -2,19 +2,25 @@
 
 # 悟道领域驱动设计（Thinking in Domain Driven Design）
 
-**各位朋友 clone 和 fork 之前，麻烦顺手帮忙 star 一下！**
+<span  style="color: #63BEF2; font-size: large; "> 创作不易，麻烦各位读者朋友顺手帮忙 star 一下，感谢支持！</span>
 
 ## 1. 项目介绍
 
-本项目是笔者领域驱动设计实践的总结，欢迎读者提出宝贵意见。
+本项目是笔者领域驱动设计实践的总结，本书主要有以下特点：
 
-特点：
+- 与开发语言无关、与框架无关
 
-- 与开发语言无关、与框架无关，领域驱动设计是与技术无关的，因此本书中没有选择某些特殊的语言、特殊的框架作为案例，理论上看完本书可以使用任何语言实践 DDD。
+领域驱动设计是与技术无关的，因此本书中没有选择某些特殊的语言、特殊的框架作为案例，理论上看完本书可以使用任何语言实践 DDD。
 
-- 作者始终坚信大道至简，好的东西应该能把事情简化，而不是把事情搞得更复杂，更不是为了讲解一个概念去提出一个新的概念，因此用最简单的语言去讲解领域驱动设计，力求每一位读者都能有所收获。
+- 易于理解
 
-- 本书大部分架构图均采用 C4 架构模型，阅读本书的同时也将掌握 C4 架构模型。
+作者始终坚信大道至简，好的东西应该能把事情简化，而不是把事情搞得更复杂，更不是为了讲解一个概念去提出一个新的概念，因此用最简单的语言去讲解领域驱动设计，力求每一位读者都能有所收获。
+
+- C4架构
+
+本书大部分架构图均采用 C4 架构模型，阅读本书的同时也将掌握 C4 架构模型。
+
+欢迎读者提出宝贵意见。
 
 ## 2. 阅读方法
 
@@ -24,7 +30,27 @@
 
 ![](https://s1.ax1x.com/2023/06/27/pCa5cm6.png)
 
-### 本地阅读
+### 2.2 PDF下载
+
+- 夸克网盘
+
+链接：https://pan.quark.cn/s/636e6b6c418e
+
+提取码：AuJz
+
+- 阿里云盘
+
+链接：https://www.aliyundrive.com/s/gkCDtFeTb19
+
+提取码: yz49
+
+- 百度网盘
+
+链接: https://pan.baidu.com/s/1ABnUf2HjZaVqki7pk8eW5g 
+
+提取码: dnuc
+
+### 2.3 本地运行
 
 本文档是由[VitePress](https://github.com/vuejs/vitepress)驱动的，可以通过克隆本工程进行本地编译构建运行。过程如下：
 
@@ -48,37 +74,67 @@ $ yarn docs:dev
 http://localhost:5173/Thinking-in-DDD/
 ```
 
-## 2.2 案例代码
+## 3. 案例代码
 
-- DDD 基础类库
+### 3.1 DDD 基础类库
+
+案例项目可能需要的类库，如果发现运行报错，请自行clone并导入。
+
+地址：
 
 ```text
 https://github.com/feiniaojin/ddd
 ```
 
-- 视频直播项目
+### 3.2 视频直播项目
+
+采用DDD实现的视频直播项目，包括直播间管理、主播管理、直播管理等功能。
+
+- 技术栈
+
+SpringBoot+MySQL
+
+- 地址
 
 ```text
 https://github.com/feiniaojin/ddd-live
 ```
+- 运行截图
 
 [![pi1DckD.png](https://z1.ax1x.com/2023/11/08/pi1DckD.png)](https://imgse.com/i/pi1DckD)
 
-- AIGC 项目
+### 3.3 AIGC 项目
+
+基于DDD实现的AIGC项目，整合了ChatGPT。
+
+- 技术栈
+
+SpringBoot+MySQL
+
+- 地址
 
 ```text
 https://github.com/feiniaojin/ddd-aigc
 ```
+- 运行截图
 
 [![pinWL0f.png](https://z1.ax1x.com/2023/10/31/pinWL0f.png)](https://imgse.com/i/pinWL0f)
 
 - CMS 项目
 
+采用DDD开发的CMS类项目
+
+- 技术栈
+
+SpringBoot+MySQL
+
+- 地址
+
 ```text
 https://github.com/feiniaojin/ddd-example-cms
 ```
 
-## 2.3 版权声明
+## 4 版权声明
 
 - 本作品代码部分
 
@@ -118,7 +174,7 @@ https://github.com/feiniaojin/ddd-example-cms
 
 只要你遵守许可协议条款，许可人就无法收回你的这些权利。
 
-# DDD 学习交流群
+## 5. DDD学习交流群
 
 欢迎加入 DDD 交流群。微信扫以下二维码添加作者微信，标注“DDD”，好友申请通过后拉您进群。
 
