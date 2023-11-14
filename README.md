@@ -33,22 +33,21 @@
 ### 2.2 PDF下载
 
 - 夸克网盘
-
+```text
 链接：https://pan.quark.cn/s/636e6b6c418e
-
 提取码：AuJz
-
+```
 - 阿里云盘
-
+```text
 链接：https://www.aliyundrive.com/s/gkCDtFeTb19
-
 提取码: yz49
+```
 
 - 百度网盘
-
+```text
 链接: https://pan.baidu.com/s/1ABnUf2HjZaVqki7pk8eW5g 
-
 提取码: dnuc
+```
 
 ### 2.3 本地运行
 
@@ -103,9 +102,9 @@ https://github.com/feiniaojin/ddd-live
 
 [![pi1DckD.png](https://z1.ax1x.com/2023/11/08/pi1DckD.png)](https://imgse.com/i/pi1DckD)
 
-### 3.3 AIGC 项目
+### 3.3 AIGC 项目——贴纸日记
 
-基于DDD实现的AIGC项目，整合了ChatGPT。
+贴纸日记，基于DDD实现的AIGC项目，整合了ChatGPT。
 
 - 技术栈
 
