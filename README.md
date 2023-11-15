@@ -1,4 +1,4 @@
-<center><img src="https://s1.ax1x.com/2023/02/27/pp9zsgg.png"/></center>
+<div style="text-align: center;"><img src="https://s1.ax1x.com/2023/02/27/pp9zsgg.png"/></div>
 
 # 悟道领域驱动设计（Thinking in Domain Driven Design）
 
@@ -34,19 +34,19 @@
 
 - 夸克网盘
 ```text
-链接：https://pan.quark.cn/s/636e6b6c418e
-提取码：AuJz
+链接：https://pan.quark.cn/s/119c3f52e167
+提取码：mFvL
 ```
 - 阿里云盘
 ```text
-链接：https://www.aliyundrive.com/s/gkCDtFeTb19
-提取码: yz49
+链接：https://www.aliyundrive.com/s/V6eCVRJMxm1
+提取码: i26i
 ```
 
 - 百度网盘
 ```text
-链接: https://pan.baidu.com/s/1ABnUf2HjZaVqki7pk8eW5g 
-提取码: dnuc
+链接: https://pan.baidu.com/s/1SAh5yJ2_xFAWuZoRsNpP-g
+提取码: 7t9n 
 ```
 
 ### 2.3 本地运行
@@ -155,15 +155,15 @@ https://github.com/feiniaojin/ddd-example-cms
 
 **署名**： 您必须给出 适当的署名 ，提供指向本许可协议的链接，同时 标明是否（对原始作品）作了修改 。您可以用任何合理的方式来署名，但是不得以任何方式暗示许可人为您或您的使用背书。
 
->引用本作品任何内容时，必须提供作者的署名以及本作品的链接（http://ddd.feiniaojin.com/）
+>引用本作品任何内容时，必须提供作者的署名以及本作品的链接（ http://ddd.feiniaojin.com/ ）
 
 **非商业性使用**： 您不得将本作品用于 商业目的 。
 
->发表在自媒体平台（包括但不限于微信公众号、头条号等）将被视为商业应用，必须取得作者的授权。
+>在媒体、自媒体平台（包括但不限于微信公众号、头条号等）转载、二次创作、发表等行为将被视为商业应用，必须取得作者的授权。
 
 **禁止演绎**： 如果您 再混合、转换、或者基于该作品创作 ，您不可以分发修改作品。
 
->基于本作品任何内容、任何形式（文章、视频、语音、有声书）的二次创作，都必须取得作者的授权。
+>基于本作品任何内容，进行任何形式（包括但不限于文章、视频、语音、有声书等）的二次创作（包括翻译为其他语言），都必须取得作者的授权。
 
 **没有附加限制**： 您不得适用法律术语或者 技术措施 从而限制其他人做许可协议允许的事情。
 
