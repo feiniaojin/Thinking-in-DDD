@@ -177,4 +177,4 @@ https://github.com/feiniaojin/ddd-example-cms
 
 欢迎加入 DDD 交流群。微信扫以下二维码添加作者微信，标注“DDD”，好友申请通过后拉您进群。
 
-<img src="https://pic.imgdb.cn/item/65536705c458853aef514df3.jpg" width="50%" height="50%" alt="qr.jpg"/>
+<div><img src="https://gingoimg.oss-cn-beijing.aliyuncs.com/ddd/qr.jpg" width="50%" height="50%" alt="pi1rmB6.jpg" border="0"/></div>
