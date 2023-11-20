@@ -11,12 +11,12 @@ export default {
       { icon: "github", link: "https://github.com/feiniaojin/Thinking-in-DDD" },
     ],
     footer: {
-      copyright: "Copyright © 2020-present Qin Yujie",
+      copyright: "京ICP备17012814号-1 Copyright © 2020-present Qin Yujie",
     },
     nav: [
       {
         text: "悟道领域驱动设计",
-        link: "/0/0.0.md",
+        link: "/0.0.md",
         activeMatch: "/",
       }
     ],
