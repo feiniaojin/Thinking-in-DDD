@@ -36,6 +36,10 @@ export default {
           {
             text: "作者简介",
             link: "/author.md",
+          },
+          {
+            text: "学习交流",
+            link: "/0.1.md",
           }
         ],
       },
