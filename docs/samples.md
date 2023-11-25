@@ -1,4 +1,44 @@
 # 示例代码
+本书随书代码整理如下，目前正在持续整理中。
+## 依赖库
+随书案例中可能依赖了以下的Java库，欢迎star！
+### Graceful Response
+
+Graceful Response是一个Spring Boot体系下的优雅响应处理器，提供一站式统一返回值封装、全局异常处理、自定义异常错误码、JSR303参数校验增强等功能，使用Graceful Response进行web接口开发不仅可以节省大量的时间，还可以提高代码质量，使代码逻辑更清晰。
+
+零学习门槛，十秒钟上手！
+
+GitHub仓库地址：https://github.com/feiniaojin/graceful-response
+
+详细使用文档见[档中心](https://doc.feiniaojin.com)。
+
+### pie
+
+pie是一个可快速上手的责任链框架，开发者只需要专注业务，开发相应的handler，即可完成业务的责任链落地。pie的核心代码均来自Netty，绝大部分的API与Netty是一致的。
+
+一分钟学会、三分钟上手、五分钟应用，欢迎star。
+
+pie源码地址：https://github.com/feiniaojin/pie.git
+
+pie案例工程源码地址：https://github.com/feiniaojin/pie-example.git
+
+详细使用文档见[文档中心](https://doc.feiniaojin.com)。
+
+### ddd-archetype
+ddd-archetype是一个Maven Archetype的原型工程，是基于本书《第2章 应用架构》的应用架构。我们将其克隆到本地之后，可以安装为Maven Archetype，帮助我们快速创建DDD项目脚手架。
+
+本书所有案例均使用ddd-archetype创建，架构简单容易理解，成功案例众多，欢迎在实际工作中使用。
+
+详细使用文档见[文档中心](https://doc.feiniaojin.com)。
+
+### ddd
+
+DDD的实现与技术无关，但本书部分案例代码为了开发效率，因此依赖了该类库。
+
+该类库在ddd-live、ddd-aigc等多个项目中有引用。
+
+GitHub地址：https://github.com/feiniaojin/ddd
+
 
 ## 第10章 事件溯源
 
