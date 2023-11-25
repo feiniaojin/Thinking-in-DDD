@@ -58,6 +58,10 @@ export default {
                     {
                         text: "第2章 应用架构",
                         link: "/2.md",
+                    },
+                    {
+                        text: "随书示例代码",
+                        link: "/samples.md",
                     }
                 ],
             }
