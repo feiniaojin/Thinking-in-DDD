@@ -1,7 +1,11 @@
-# 示例代码
+# 随书示例代码
+
 本书随书代码整理如下，目前正在持续整理中。
+
 ## 依赖库
+
 随书案例中可能依赖了以下的Java库，欢迎star！
+
 ### Graceful Response
 
 Graceful Response是一个Spring Boot体系下的优雅响应处理器，提供一站式统一返回值封装、全局异常处理、自定义异常错误码、JSR303参数校验增强等功能，使用Graceful Response进行web接口开发不仅可以节省大量的时间，还可以提高代码质量，使代码逻辑更清晰。
@@ -41,6 +45,28 @@ GitHub地址：https://github.com/feiniaojin/ddd
 
 
 ## 第10章 事件溯源
+
+### 第一个实现方案——基础版本
+
+这是书中介绍的第一种实现方案——基于领域事件完成聚合根重建，每次执行Command操作时都需要加载所有领域事件并重建聚合根。
+
+仓库地址：
+```text
+https://github.com/feiniaojin/ddd-event-sourcing
+```
+### 第二个实现方案——快照版本
+
+这是书中介绍的第一种实现方案——引入快照，加速聚合根重建的实现溯源方案。每次执行Command操作时，先加载快照，在快照的基础上回放领域事件并重建聚合根。
+
+仓库地址：
+
+```text
+https://github.com/feiniaojin/ddd-event-sourcing-snapshot
+```
+
+### 第三个实现方案——待整理
+
+//TODO
 
 ## 第20章 使用DDD实现直播服务
 
