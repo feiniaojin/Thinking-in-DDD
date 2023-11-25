@@ -14,7 +14,7 @@ Graceful Response是一个Spring Boot体系下的优雅响应处理器，提供�
 
 GitHub仓库地址：https://github.com/feiniaojin/graceful-response
 
-详细使用文档见[档中心](https://doc.feiniaojin.com)。
+详细使用文档见[文档中心](https://doc.feiniaojin.com)。
 
 ### pie
 
