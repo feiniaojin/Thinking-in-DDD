@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as a,a as p}from"./app.07f1e9b2.js";const f=JSON.parse('{"title":"知识答疑","description":"","frontmatter":{},"headers":[],"relativePath":"0.2.md"}'),s={name:"0.2.md"},_=p("",6),o=[_];function c(i,r,n,d,l,h){return t(),a("div",null,o)}const u=e(s,[["render",c]]);export{f as __pageData,u as default};
