@@ -42,11 +42,11 @@ export default {
                         link: "/author.md",
                     },
                     {
-                        text: "学习资源和读者交流",
+                        text: "学习资源",
                         link: "/0.1.md",
                     },
                     {
-                        text: "知识答疑",
+                        text: "读者交流",
                         link: "/0.2.md",
                     }
                 ],
