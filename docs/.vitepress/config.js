@@ -48,6 +48,10 @@ export default {
                     {
                         text: "读者交流",
                         link: "/0.2.md",
+                    },
+                    {
+                        text: "企业合作",
+                        link: "/0.3.md",
                     }
                 ],
             },
@@ -66,7 +70,7 @@ export default {
                 collapsible: true,
                 items: [
                     {
-                        text: "第1章 初步认识领域驱动设计",
+                        text: "第1章 领域驱动设计预热",
                         link: "/1.md",
                     },
                     {
