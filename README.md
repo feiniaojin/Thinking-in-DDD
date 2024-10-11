@@ -60,30 +60,7 @@
 
 ![](https://s1.ax1x.com/2023/06/27/pCa5cm6.png)
 
-### 2.2 PDF下载
-
-- 夸克网盘
-
-```text
-链接：https://pan.quark.cn/s/119c3f52e167
-提取码：mFvL
-```
-
-- 阿里云盘
-
-```text
-链接：https://www.aliyundrive.com/s/V6eCVRJMxm1
-提取码: i26i
-```
-
-- 百度网盘
-
-```text
-链接: https://pan.baidu.com/s/1SAh5yJ2_xFAWuZoRsNpP-g
-提取码: 7t9n 
-```
-
-### 2.3 本地运行
+### 2.2 本地运行
 
 本文档是由[VitePress](https://github.com/vuejs/vitepress)驱动的，可以通过克隆本工程进行本地编译构建运行。过程如下：
 
@@ -111,7 +88,7 @@ http://localhost:5173/Thinking-in-DDD/
 
 本书提供随书示例代码，目前已整理到[示例代码](https://ddd.feiniaojin.com/samples.html)。
 
-## 4. DDD学习交流群
+## 4. 学习交流
 
 ### 4.1 微信交流群
 
@@ -124,6 +101,12 @@ http://localhost:5173/Thinking-in-DDD/
 本书专属公众号“悟道领域驱动设计”，对于读者提出的问题，作者解答后将发布在该公众号上。敬请关注。
 
 <div><img src="./assets/gzh.jpg" width="50%" height="50%" alt="pi1rmB6.jpg" border="0"/></div>
+
+### 4.3 知识星球
+
+欢迎加入知识星球，阅读本书完整电子版.
+
+![zsxq.jpg](assets/zsxq.jpg)
 
 ## 5. 版权声明
 

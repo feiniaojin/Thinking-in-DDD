@@ -8,7 +8,7 @@
 
 3）了解其他人学习和实践过程中的问题和解决方案
 
-![星球QR](https://s1.ax1x.com/2023/04/15/p9p2mKP.jpg)
+<img src="/images/0/zsxq.jpg" width="50%" height="50%" alt="qr.jpg"/>
 
 - 读者交流微信群
 
