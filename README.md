@@ -102,12 +102,6 @@ http://localhost:5173/Thinking-in-DDD/
 
 <div><img src="./assets/gzh.jpg" width="50%" height="50%" alt="pi1rmB6.jpg" border="0"/></div>
 
-### 4.3 知识星球
-
-欢迎加入知识星球，阅读本书完整电子版.
-
-![zsxq.jpg](assets/zsxq.jpg)
-
 ## 5. 版权声明
 
 ### 本作品代码部分
