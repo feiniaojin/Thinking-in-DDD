@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as o,a as r}from"./app.5ea4642b.js";const f=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"copyright-notice.md"}'),p={name:"copyright-notice.md"},n=r("",19),a=[n];function c(s,i,l,_,d,g){return t(),o("div",null,a)}const u=e(p,[["render",c]]);export{f as __pageData,u as default};
