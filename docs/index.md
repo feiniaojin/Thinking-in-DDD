@@ -5,13 +5,15 @@ hero:
   name: Thinking in Domain Driven Design
   text: 悟道领域驱动设计
   tagline: 脚踏实地是最快的捷径
+  image:
+    src: /images/ddd-book.png
   actions:
     - theme: brand
       text: 开始学习 →
       link: /0.0.md
     - theme: alt
-      text: View on GitHub
-      link: https://github.com/feiniaojin/Thinking-in-DDD
+      text: 到京东购买实体书
+      link: https://item.jd.com/14835288.html
 
 features:
   - title: 与开发语言无关
