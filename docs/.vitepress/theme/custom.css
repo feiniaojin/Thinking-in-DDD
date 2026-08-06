@@ -1,4 +1,11 @@
 :root {
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
+
+  /* 主题色：Vue 清新绿
+     VitePress 1.x 稳定版默认品牌色已改为靛蓝，此处显式恢复为 Vue 绿（#42b883），保持旧版观感。 */
+  --vp-c-brand-1: #42b883;
+  --vp-c-brand-2: #42b883;
+  --vp-c-brand-3: #35a872;
+  --vp-c-brand-soft: rgba(66, 184, 131, 0.14);
 }
